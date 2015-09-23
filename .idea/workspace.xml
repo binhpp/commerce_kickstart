@@ -1,0 +1,798 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="d27f4678-a1f5-4b41-94fd-2c29c8b0c9bd" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/TextData/CLEAN.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/GnumericTest.gnumeric" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/OOCalcTest.ods" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/images/officelogo.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/images/paid.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/images/phpexcel_logo.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/images/termsconditions.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/.gitattributes" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/.gitignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/.gitignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/.travis.yml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/01pharSimple.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/01simple-download-ods.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/01simple-download-pdf.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/01simple-download-xls.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/01simple-download-xlsx.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/01simple.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/01simplePCLZip.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/02types-xls.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/02types.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/03formulas.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/04printing.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/05featuredemo.inc.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/05featuredemo.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/06largescale-with-cellcaching-sqlite.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/06largescale-with-cellcaching-sqlite3.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/06largescale-with-cellcaching.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/06largescale-xls.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/06largescale.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/07reader.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/07readerPCLZip.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/08conditionalformatting.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/08conditionalformatting2.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/09pagebreaks.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/10autofilter-selection-1.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/10autofilter-selection-2.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/10autofilter-selection-display.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/10autofilter.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/11documentsecurity-xls.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/11documentsecurity.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/12cellProtection.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/13calculation.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/13calculationCyclicFormulae.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/14excel5.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/15datavalidation-xls.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/15datavalidation.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/16csv.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/17html.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/18extendedcalculation.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/19namedrange.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/20readexcel5.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/21pdf.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/22heavilyformatted.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/23sharedstyles.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/24readfilter.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/25inmemoryimage.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/26utf8.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/27imagesexcel5.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/28iterator.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/29advancedvaluebinder.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/30template.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/31docproperties_write-xls.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/31docproperties_write.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/32chartreadwrite.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/33chartcreate-area.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/33chartcreate-bar-stacked.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/33chartcreate-bar.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/33chartcreate-column-2.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/33chartcreate-column.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/33chartcreate-composite.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/33chartcreate-line.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/33chartcreate-multiple-charts.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/33chartcreate-pie.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/33chartcreate-radar.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/33chartcreate-scatter.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/33chartcreate-stock.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/34chartupdate.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/35chartrender.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/36chartreadwriteHTML.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/36chartreadwritePDF.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/37page_layout_view.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/38cloneWorksheet.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/39dropdown.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/40duplicateStyle.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/41password.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/42richText.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/43mergeWorkbooks.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Financial/ACCRINT.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Financial/ACCRINTM.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Financial/AMORDEGRC.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Financial/AMORLINC.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Logical/AND.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/CachedObjectStorage/APC.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/MathTrig/ATAN2.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Reader/Abstract.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Writer/Abstract.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Cell/AdvancedValueBinder.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/Classes/PHPExcel/Cell/AdvancedValueBinderTest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/data/continents/Africa.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Style/Alignment.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/data/continents/Asia.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Worksheet/AutoFilter.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/Classes/PHPExcel/Worksheet/AutoFilterTest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Autoloader.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/Classes/PHPExcel/AutoloaderTest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Chart/Axis.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Engineering/BESSELI.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Engineering/BESSELJ.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Engineering/BESSELK.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Engineering/BESSELY.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Writer/Excel5/BIFFwriter.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Engineering/BIN2DEC.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Engineering/BIN2HEX.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Engineering/BIN2OCT.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Shared/Escher/DggContainer/BstoreContainer/BSE.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Worksheet/BaseDrawing.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Shared/Escher/DggContainer/BstoreContainer/BSE/Blip.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Style/Border.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Style/Borders.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Shared/Escher/DggContainer/BstoreContainer.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/MathTrig/CEILING.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Shared/JAMA/CHANGELOG.TXT" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/TextData/CHAR.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/TextData/CODE.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/MathTrig/COMBIN.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Engineering/COMPLEX.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/TextData/CONCATENATE.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Engineering/CONVERTUOM.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Financial/COUPDAYBS.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Financial/COUPDAYS.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Financial/COUPDAYSNC.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Financial/COUPNCD.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Financial/COUPNUM.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Financial/COUPPCD.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Reader/CSV.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Writer/CSV.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Financial/CUMIPMT.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Financial/CUMPRINC.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/CachedObjectStorage/CacheBase.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/CachedObjectStorageFactory.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Calculation.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/CalculationBinaryComparisonOperation.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/Classes/PHPExcel/CalculationTest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Cell.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/CellAbsoluteCoordinate.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/CellAbsoluteReference.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/CellBuildRange.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/Classes/PHPExcel/Worksheet/CellCollectionTest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/CellCoordinates.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/CellExtractAllCellReferencesInRange.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/CellGetRangeBoundaries.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Worksheet/CellIterator.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/CellRangeBoundaries.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/CellRangeDimension.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/CellSplitRange.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/Classes/PHPExcel/CellTest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Shared/CentimeterSizeToPixels.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Shared/OLE/ChainedBlockStream.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Chart.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Reader/Excel2007/Chart.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Writer/Excel2007/Chart.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Shared/JAMA/CholeskyDecomposition.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Shared/CodePage.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Shared/CodePage.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/Classes/PHPExcel/Shared/CodePageTest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Style/Color.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Style/ColorChangeBrightness.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Style/ColorGetBlue.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Style/ColorGetGreen.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Style/ColorGetRed.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/Classes/PHPExcel/Style/ColorTest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Worksheet/Column.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Worksheet/AutoFilter/Column.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Worksheet/ColumnCellIterator.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/Classes/PHPExcel/Worksheet/ColumnCellIteratorTest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Worksheet/ColumnDimension.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/ColumnIndex.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Worksheet/ColumnIterator.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/Classes/PHPExcel/Worksheet/ColumnIteratorTest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/ColumnString.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/Classes/PHPExcel/Worksheet/AutoFilter/ColumnTest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Comment.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Writer/OpenDocument/Cell/Comment.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Writer/Excel2007/Comments.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/custom/Complex.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Style/Conditional.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Writer/OpenDocument/Content.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Writer/Excel2007/ContentTypes.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Writer/PDF/Core.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/CalcEngine/CyclicReferenceStack.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/DateTime/DATE.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/DateTime/DATEDIF.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/DateTime/DATEVALUE.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/DateTime/DAY.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/DateTime/DAYS360.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Financial/DB.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Financial/DDB.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Engineering/DEC2BIN.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Engineering/DEC2HEX.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Engineering/DEC2OCT.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Engineering/DELTA.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Financial/DISC.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/TextData/DOLLAR.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Financial/DOLLARDE.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Financial/DOLLARFR.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Chart/DataSeries.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Chart/DataSeriesValues.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/Classes/PHPExcel/Chart/DataSeriesValuesTest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Cell/DataType.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/Classes/PHPExcel/Cell/DataTypeTest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Cell/DataValidation.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Calculation/Database.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Shared/Date.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/Classes/PHPExcel/Shared/DateTest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Calculation/DateTime.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Shared/DateTimeExcelToPHP1900.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Shared/DateTimeExcelToPHP1900Timezone.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Shared/DateTimeExcelToPHP1904.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Shared/DateTimeFormatCodes.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Shared/DateTimeFormattedPHPToExcel1900.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Shared/DateTimePHPToExcel1900.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Shared/DateTimePHPToExcel1904.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/Classes/PHPExcel/Calculation/DateTimeTest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Reader/DefaultReadFilter.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Cell/DefaultValueBinder.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Cell/DefaultValueBinder.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/Classes/PHPExcel/Cell/DefaultValueBinderTest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Shared/Escher/DgContainer.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Shared/Escher/DggContainer.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Worksheet/Dimension.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/CachedObjectStorage/DiscISAM.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Writer/Excel2007/DocProps.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/DocumentProperties.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/DocumentSecurity.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Writer/PDF/DomPDF.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Shared/Drawing.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Worksheet/Drawing.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Writer/Excel2007/Drawing.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/DateTime/EDATE.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Financial/EFFECT.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/DateTime/EOMONTH.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Engineering/ERF.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Engineering/ERFC.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Functions/ERROR_TYPE.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/MathTrig/EVEN.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Shared/JAMA/EigenvalueDecomposition.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Calculation/Engineering.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/Classes/PHPExcel/Calculation/EngineeringTest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Shared/JAMA/utils/Error.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Reader/Excel5/Escher.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Shared/Escher.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Writer/Excel5/Escher.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/data/continents/Europe.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Reader/Excel2003XML.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/Excel2003XMLReader.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/Excel2003XMLTest.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Reader/Excel2007.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Writer/Excel2007.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Reader/Excel5.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Shared/Excel5.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Writer/Excel5.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Exception.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Calculation/Exception.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Chart/Exception.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Reader/Exception.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Writer/Exception.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Calculation/ExceptionHandler.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/MathTrig/FACT.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/MathTrig/FACTDOUBLE.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/TextData/FIND.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/TextData/FIXED.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/MathTrig/FLOOR.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Financial/FV.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Financial/FVSCHEDULE.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Shared/File.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Shared/OLE/PPS/File.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/Classes/PHPExcel/Shared/FileTest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Style/Fill.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Calculation/Financial.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/Classes/PHPExcel/Calculation/FinancialTest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Shared/Font.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Style/Font.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Writer/Excel5/Font.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Shared/FontSizeToPixels.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/Classes/PHPExcel/Shared/FontTest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Calculation/FormulaParser.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Calculation/FormulaToken.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Calculation/Function.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Calculation/Functions.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/Classes/PHPExcel/Calculation/FunctionsTest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/MathTrig/GCD.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Engineering/GESTEP.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Reader/Gnumeric.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/GnumericReader.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Chart/GridLines.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Engineering/HEX2BIN.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Engineering/HEX2DEC.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Engineering/HEX2OCT.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/LookupRef/HLOOKUP.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/DateTime/HOUR.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Helper/HTML.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Reader/HTML.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Writer/HTML.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/HashTable.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Worksheet/HeaderFooter.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Worksheet/HeaderFooterDrawing.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Cell/Hyperlink.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/Classes/PHPExcel/Cell/HyperlinkTest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/CachedObjectStorage/ICache.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/IComparable.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Logical/IF.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Logical/IFERROR.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Engineering/IMABS.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Engineering/IMAGINARY.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Engineering/IMARGUMENT.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Engineering/IMCONJUGATE.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Engineering/IMCOS.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Engineering/IMDIV.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Engineering/IMEXP.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Engineering/IMLN.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Engineering/IMLOG10.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Engineering/IMLOG2.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Engineering/IMPOWER.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Engineering/IMPRODUCT.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Engineering/IMREAL.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Engineering/IMSIN.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Engineering/IMSQRT.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Engineering/IMSUB.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Engineering/IMSUM.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/MathTrig/INT.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Financial/INTRATE.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/IOFactory.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Financial/IPMT.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Financial/IRR.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Reader/IReadFilter.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Reader/IReader.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Financial/ISPMT.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Functions/IS_BLANK.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Functions/IS_ERR.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Functions/IS_ERROR.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Functions/IS_EVEN.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Functions/IS_LOGICAL.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Functions/IS_NA.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Functions/IS_NONTEXT.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Functions/IS_NUMBER.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Functions/IS_ODD.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Functions/IS_TEXT.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/RichText/ITextElement.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Cell/IValueBinder.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Writer/IWriter.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/CachedObjectStorage/Igbinary.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Shared/InchSizeToPixels.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/MathTrig/LCM.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/TextData/LEFT.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/TextData/LEN.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/MathTrig/LOG.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/TextData/LOWER.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Shared/JAMA/LUDecomposition.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Chart/Layout.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/Classes/PHPExcel/Chart/LayoutTest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Chart/Legend.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/Classes/PHPExcel/Chart/LegendTest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/CalcEngine/Logger.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Calculation/Logical.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/Classes/PHPExcel/Calculation/LogicalTest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Calculation/LookupRef.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/Classes/PHPExcel/Calculation/LookupRefTest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Reader/Excel5/MD5.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/MathTrig/MDETERM.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/TextData/MID.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/DateTime/MINUTE.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/MathTrig/MINVERSE.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Financial/MIRR.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/MathTrig/MMULT.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/MathTrig/MOD.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/DateTime/MONTH.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/MathTrig/MROUND.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/MathTrig/MULTINOMIAL.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Calculation/MathTrig.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/Classes/PHPExcel/Calculation/MathTrigTest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Shared/JAMA/utils/Maths.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Shared/JAMA/Matrix.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/CachedObjectStorage/Memcache.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/CachedObjectStorage/Memory.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Worksheet/MemoryDrawing.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/CachedObjectStorage/MemoryGZip.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/CachedObjectStorage/MemorySerialized.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Writer/OpenDocument/Meta.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Writer/OpenDocument/MetaInf.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Writer/OpenDocument/Mimetype.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Functions/N.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/DateTime/NETWORKDAYS.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Financial/NOMINAL.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Logical/NOT.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Financial/NPER.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Financial/NPV.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/NamedRange.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/data/continents/North America.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Style/NumberFormat.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Style/NumberFormat.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/Classes/PHPExcel/Style/NumberFormatDateTest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Style/NumberFormatDates.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/Classes/PHPExcel/Style/NumberFormatTest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Engineering/OCT2BIN.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Engineering/OCT2DEC.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Engineering/OCT2HEX.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/MathTrig/ODD.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Shared/OLE.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Shared/OLERead.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Reader/OOCalc.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/OOCalcReader.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/OOCalcReaderPCLZip.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Logical/OR.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/data/continents/Oceania.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Writer/OpenDocument.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Writer/PDF.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Chart/Renderer/PHP Charting Libraries.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/CachedObjectStorage/PHPTemp.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/MathTrig/POWER.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Shared/OLE/PPS.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Financial/PRICE.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/MathTrig/PRODUCT.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/TextData/PROPER.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Worksheet/PageMargins.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Worksheet/PageSetup.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Writer/Excel5/Parser.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Shared/PasswordHasher.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/Classes/PHPExcel/Shared/PasswordHasherTest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Shared/PasswordHashes.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Chart/PlotArea.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Chart/Properties.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Style/Protection.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Worksheet/Protection.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Shared/JAMA/QRDecomposition.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/MathTrig/QUOTIENT.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/Quadratic.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/Quadratic2.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Financial/RATE.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Reader/Excel5/RC4.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/TextData/REPLACE.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/TextData/RIGHT.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/MathTrig/ROMAN.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/MathTrig/ROUNDDOWN.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/MathTrig/ROUNDUP.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/ReferenceHelper.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/Classes/PHPExcel/ReferenceHelperTest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Writer/Excel2007/Rels.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Writer/Excel2007/RelsRibbon.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Writer/Excel2007/RelsVBA.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/RichText.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Shared/OLE/PPS/Root.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Worksheet/Row.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Worksheet/RowCellIterator.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/Classes/PHPExcel/Worksheet/RowCellIteratorTest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Worksheet/RowDimension.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Worksheet/RowIterator.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/Classes/PHPExcel/Worksheet/RowIteratorTest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Worksheet/AutoFilter/Column/Rule.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/Classes/PHPExcel/Worksheet/AutoFilter/Column/RuleTest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/RichText/Run.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/TextData/SEARCH.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/DateTime/SECOND.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/MathTrig/SERIESSUM.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/MathTrig/SIGN.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/CachedObjectStorage/SQLite.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/CachedObjectStorage/SQLite3.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/MathTrig/SQRTPI.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/TextData/SUBSTITUTE.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/MathTrig/SUMSQ.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Reader/SYLK.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Settings.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Writer/OpenDocument/Settings.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Worksheet/Drawing/Shadow.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Worksheet/SheetView.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Shared/JAMA/SingularValueDecomposition.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/data/continents/South America.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Shared/Escher/DgContainer/SpgrContainer/SpContainer.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Shared/Escher/DgContainer/SpgrContainer.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Calculation/Token/Stack.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Calculation/Statistical.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Shared/String.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Writer/Excel2007/StringTable.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/Classes/PHPExcel/Shared/StringTest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Style.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Writer/Excel2007/Style.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Writer/OpenDocument/Styles.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Style/Supervisor.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/SylkReader.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/SylkTest.slk" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/TextData/T.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/TextData/TEXT.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/DateTime/TIME.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/DateTime/TIMEVALUE.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/TextData/TRIM.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/MathTrig/TRUNC.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Functions/TYPE.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Calculation/TextData.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/Classes/PHPExcel/Calculation/TextDataTest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/RichText/TextElement.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Reader/Excel2007/Theme.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Writer/Excel2007/Theme.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Writer/OpenDocument/Thumbnails.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Shared/TimeZone.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/Classes/PHPExcel/Shared/TimeZoneTest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Chart/Title.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/TextData/UPPER.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/TextData/VALUE.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/LookupRef/VLOOKUP.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/DateTime/WEEKDAY.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/DateTime/WEEKNUM.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/DateTime/WORKDAY.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/CachedObjectStorage/Wincache.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Writer/Excel2007/Workbook.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Writer/Excel5/Workbook.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Worksheet.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Writer/Excel2007/Worksheet.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Writer/Excel5/Worksheet.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/Classes/PHPExcel/Worksheet/WorksheetColumnTest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/WorksheetIterator.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/Classes/PHPExcel/Worksheet/WorksheetRowTest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Writer/Excel2007/WriterPart.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Writer/OpenDocument/WriterPart.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Reader/XEETestInvalidUTF-16.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Reader/XEETestInvalidUTF-16BE.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Reader/XEETestInvalidUTF-16LE.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Reader/XEETestInvalidUTF-8.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Reader/XEETestValidUTF-16.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Reader/XEETestValidUTF-16BE.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Reader/XEETestValidUTF-16LE.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Reader/XEETestValidUTF-8.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/Classes/PHPExcel/Reader/XEEValidatorTest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/Financial/XIRR.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/XMLReader.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/XMLTest.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Shared/XMLWriter.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Writer/Excel5/Xf.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/DateTime/YEAR.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/rawTestData/Calculation/DateTime/YEARFRAC.data" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Shared/ZipArchive.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Shared/ZipStreamWrapper.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Shared/trend/bestFitClass.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/bootstrap.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/changelog.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/custom/complexAssert.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/composer.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/locale/bg/config" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/locale/cs/config" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/locale/da/config" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/locale/de/config" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/locale/en/uk/config" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/locale/es/config" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/locale/fi/config" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/locale/fr/config" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/locale/hu/config" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/locale/it/config" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/locale/nl/config" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/locale/no/config" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/locale/pl/config" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/locale/pt/config" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/locale/pt/br/config" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/locale/ru/config" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/locale/sv/config" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/locale/tr/config" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Shared/trend/exponentialBestFitClass.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Calculation/functionlist.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/locale/cs/functions" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/locale/da/functions" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/locale/de/functions" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/locale/es/functions" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/locale/fi/functions" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/locale/fr/functions" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/locale/hu/functions" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/locale/it/functions" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/locale/nl/functions" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/locale/no/functions" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/locale/pl/functions" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/locale/pt/functions" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/locale/pt/br/functions" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/locale/ru/functions" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/locale/sv/functions" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/locale/tr/functions" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Shared/PCLZip/gnu-lgpl.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/install.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Chart/Renderer/jpgraph.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/license.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Shared/trend/linearBestFitClass.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Shared/trend/logarithmicBestFitClass.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Writer/PDF/mPDF.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Shared/PCLZip/pclzip.lib.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/phpunit-cc.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/phpunit.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Shared/trend/polynomialBestFitClass.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Shared/trend/powerBestFitClass.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Shared/PCLZip/readme.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Examples/runall.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Writer/PDF/tcPDF.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/unitTests/testDataFileIterator.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Shared/trend/trendClass.php" />
+    </list>
+    <ignored path="commerce_kickstart.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="commerce_kickstart" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+  </component>
+  <component name="NamedScopeManager">
+    <order />
+  </component>
+  <component name="PhpServers">
+    <servers>
+      <server host="localhost" id="d39e009e-44f7-4d83-9d15-064fa2cee675" name="localhost" />
+    </servers>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="1413" />
+    <option name="y" value="-1" />
+    <option name="width" value="1873" />
+    <option name="height" value="1081" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="commerce_kickstart" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="commerce_kickstart" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="commerce_kickstart" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="commerce_kickstart" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="commerce_kickstart" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sites" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="commerce_kickstart" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="commerce_kickstart" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sites" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="all" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="recentsLimit" value="5" />
+    <property name="restartRequiresConfirmation" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/sites/all/libraries" />
+    </key>
+  </component>
+  <component name="RunManager" selected="PHP Remote Debug.localhost">
+    <configuration default="true" type="PhpRemoteDebugRunConfigurationType" factoryName="PHP Remote Debug">
+      <method />
+    </configuration>
+    <configuration default="false" name="localhost" type="PhpRemoteDebugRunConfigurationType" factoryName="PHP Remote Debug" server_name="localhost" session_id="netbeans-xdebug">
+      <method />
+    </configuration>
+    <list size="1">
+      <item index="0" class="java.lang.String" itemvalue="PHP Remote Debug.localhost" />
+    </list>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d27f4678-a1f5-4b41-94fd-2c29c8b0c9bd" name="Default" comment="" />
+      <created>1442990877806</created>
+      <option name="number" value="Default" />
+      <updated>1442990877806</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="1413" y="-1" width="1873" height="1081" extended-state="6" />
+    <editor active="false" />
+    <layout>
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32916668" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17460318" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32916668" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/sites/all/libraries/PHPExcel/Classes/PHPExcel/Cell/DataType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
