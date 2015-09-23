@@ -1,0 +1,118 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: binh
+ * Date: 23/09/2015
+ * Time: 16:12
+ */
+/**
+ * Implement hook_menu()
+ */
+function file_api_menu() {
+    $items['file_api'] = array(
+        'title' => 'File API',
+        'page callback' => 'drupal_get_form',
+        'page arguments' => array('file_api_form'),
+        'access callback' => TRUE,
+    );
+    $items['admin/config/file_api'] = array(
+        'title' => t('File API Configure'),
+        'description' => 'File API Configure',
+        'position' => 'left',
+        'weight' => -20,
+        'page callback' => 'system_admin_menu_block_page',
+        // we should implement this function in system.admin.inc file
+        'access arguments' => array('access administration pages'),
+        'file' => 'system.admin.inc',
+        // don't forget to add the file and path
+        'file path' => drupal_get_path('module', 'system'),
+    );
+    $items['admin/config/file_api/setting'] = array(
+        'title' => 'Location setup',
+        'description' => 'Setting up location for saving file',
+        'page callback' => 'drupal_get_form',
+        'page arguments' => array('file_api_admin_setting'),
+        'access arguments' => array('accsess administration pages'),
+        'file' => 'includes/file_api.config.inc'
+    );
+    return $items;
+}
+function file_api_form($form, $form_state) {
+    $default_input_url = "public://";
+    if(variable_get('saving_file_location', 'Local') == 'Amazon S3') {
+        $default_input_url = 's3://mbvmca/_developer/binhphan/';
+    }
+    $form['input_url'] = array(
+        '#type' => 'textfield',
+        '#title' => t('Input URL. It will be saved in : ' . $default_input_url),
+        '#description' => 'Enter file url you wana load or save in',
+        '#size' => 100,
+        '#default_value' => $default_input_url,
+        '#maxlength' => 255,
+    );
+    $form['input_file'] = array(
+        '#type' => 'file',
+        '#title' => 'Upload File',
+        '#description' => 'Choose files to upload'
+    );
+    $form['upload_file'] = array(
+        '#type' => 'submit',
+        '#value' => 'Upload',
+        '#upload_file' => array('upload_file_submit'),
+    );
+    $form['download_file'] = array(
+        '#type' => 'submit',
+        '#value' => 'Download',
+    );
+    $form['scaning_file'] = array(
+        '#type' => 'button',
+        '#value' => 'Scan file',
+        '#ajax' => array(
+            'wrapper' => 'field-table-content-wrapper',
+            'callback' => 'ajax_auto_generate_table_content_options',
+            'effect' => 'slide',
+        ),
+    );
+
+    $form['field_table_set'] = array(
+        '#type' => 'fieldset',
+        '#prefix' => '<div id="field-table-content-wrapper">',
+        '#suffix' => '</div>',
+    );
+
+    $header = array(
+        'filename' => t('Filename'),
+        'url' => t('Url'),
+        'options' => t('Options'),
+    );
+
+    $directory = isset($form_state['values']['input_url']) ? $form_state['values']['input_url'] : $default_input_url;
+    if(is_dir($directory)) {
+        if(variable_get('saving_file_location', 'Local') == 'Local') {
+            $files = file_scan_directory($directory, '/.*\.*$/', array('recurse' => FALSE));
+        }
+    }
+    $options = array();
+    foreach ($files as $key => $file) {
+        $options[] = array(
+            'filename' => $file->filename,
+            'url' => is_file($key) ? l($key, 'file_api_downlown_page/' . bin2hex($key), array('attributes' => array('target' => '_blank'))) : $key,
+            'options' => is_file($key) ? l('Delete', 'file_api_delete_page/' . bin2hex($key)) : '',
+        );
+    }
+    $form['field_table_set']['table_content'] = array(
+        '#type' => 'tableselect',
+        '#header' => $header,
+        '#options' => $options,
+    );
+    return $form;
+}
+/**
+ * Implement hook_views_api()
+ */
+function file_api_views_api() {
+    return array(
+        'api' => 3,
+        'path' => drupal_get_path('module', 'file_api') . '/includes/views',
+    );
+}

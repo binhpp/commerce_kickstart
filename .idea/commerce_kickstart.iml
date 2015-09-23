@@ -7,9 +7,11 @@
     <orderEntry type="module-library">
       <library name="PHARS">
         <CLASSES>
+          <root url="phar://$MODULE_DIR$/sites/all/modules/mca-integration/chef-repo/cookbooks/php/files/windows/go-pear.phar" />
           <root url="phar://$MODULE_DIR$/profiles/commerce_kickstart/libraries/yotpo-php/yotpo.phar" />
         </CLASSES>
         <SOURCES>
+          <root url="phar://$MODULE_DIR$/sites/all/modules/mca-integration/chef-repo/cookbooks/php/files/windows/go-pear.phar" />
           <root url="phar://$MODULE_DIR$/profiles/commerce_kickstart/libraries/yotpo-php/yotpo.phar" />
         </SOURCES>
       </library>
