@@ -1,0 +1,36 @@
+VERSION 7.x-0.11-alpha2
+  - bugfix notice message when altering implemented join query
+  - add default handlers for meta field
+
+VERSION 7.x-0.10-alpha2
+  - add mca_rest_views_join_ref_field
+  - handle view join for mca_rest_field and mca_rest_fields
+
+VERSION 7.x-0.8-alpha2
+  - bugfix rest join query
+
+VERSION 7.x-0.7-alpha2
+  - bugfix mca_rest_datetime_format warning for reference to function return value
+
+VERSION 7.x-0.6-alpha2
+  - Update mca_rest_views_join_delayed_query to join tables have same col name and data in meta
+
+VERSION 7.x-0.5-alpha2
+  - add mca_rest_datetime_format()
+  - add mca_rest_views_join_delayed_query
+
+VERSION 7.x-0.4-alpha2
+  - integration with views
+  - add mca_rest_views_handler_field_date
+
+VERSION 7.x-0.3-alpha2
+  - bugfix pass by reference in mca_rest_http_post
+  - bugfix invalid RestRemoteException throw in _mca_service_validate_result
+  - bugfix add JSON_FORCE_OBJECT for post request
+  
+VERSION 7.x-0.2-alpha1
+  - add configuration interface
+  - add support for drupal_send_http
+  
+VERSION 7.x-0.1-dev
+  - initial version with pecl_http v2

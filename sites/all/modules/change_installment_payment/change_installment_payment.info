@@ -1,0 +1,5 @@
+name = Change Intallment Payment
+description = Outlining how a module can define batch operations.
+core = 7.x
+version = "7.x-1.x-dev"
+package = @custom

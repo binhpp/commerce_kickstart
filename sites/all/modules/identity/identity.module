@@ -1,0 +1,140 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: monster
+ * Date: 30/07/2015
+ * Time: 17:12
+ */
+
+/**
+ * Implements hook_field_info().
+ */
+function identity_field_info()
+{
+    $fields = array();
+
+    $fields['identity_card'] = array(
+        'label' => t('Identity Card'),
+        'description' => t('A field type used for storing identity card'),
+        'settings' => array(),
+        'instance_settings' => array(),
+        'default_widget' => 'identity_card_standard',
+        'default_formatter' => 'identity_card_default',
+    );
+
+    return $fields;
+}
+
+/**
+ * Implements hook_field_validate().
+ */
+function identity_field_validate($entity_type, $entity, $field, $instance, $langcode, $items, &$errors) {
+    foreach($items as $delta => $item) {
+        if(!empty($item['identity_id']) && !is_numeric($item['identity_id'])) {
+            $errors[$field['field_name']][$langcode][$delta][] = array(
+                'error' => 'identity_card_invalid',
+                'message' => t('Id Number must be a numeric'),
+            );
+        }
+    }
+}
+
+/**
+ * Implements hook_field_is_empty().
+ */
+function identity_field_is_empty($item, $field)
+{
+    return empty($item['identity_id']) && empty($item['issuer_place']);
+}
+
+/**
+ * Implements hook_field_widget_info().
+ */
+function identity_field_widget_info()
+{
+    $widgets = array();
+
+    $widgets['identity_card_standard'] = array(
+        'label' => t('Identity Card form'),
+        'field types' => array('identity_card'),
+    );
+
+    return $widgets;
+}
+
+/**
+ * Implements hook_field_widget_form().
+ */
+function identity_field_widget_form(&$form, &$form_state, $field, $instance, $langcode, $items, $delta, $element)
+{
+    $settings = $form_state['field'][$instance['field_name']][$langcode]['field']['settings'];
+
+    $fields = array(
+        'identity_id' => t('Identity ID'),
+        'issuer_place' => t('Issuer place'),
+    );
+
+    foreach ( $fields as $key => $label) {
+        $value = isset($items[$delta][$key]) ? $items[$delta][$key] : '';
+        if ($key == 'identity_id') {
+            $element[$key] = array(
+                '#attributes' => array('class' => array('edit-identity-card-field'), 'title' => t('')),
+                '#type' => 'textfield',
+                '#size' => 20,
+                '#maxlength' => 20,
+                '#title' => $label,
+                '#default_value' => $value,
+                '#prefix' => '<div class="identity-card identity-' . $key . '-field">',
+                '#suffix' => '</div>',
+            );
+        } else if ($key == 'issuer_place') {
+            $element[$key] = array(
+                '#attributes' => array('class' => array('edit-identity-card-field'), 'title' => t('')),
+                '#type' => 'textfield',
+                '#size' => 60,
+                '#maxlength' => 60,
+                '#title' => $label,
+                '#default_value' => $value,
+                '#prefix' => '<div class="identity-card identity-' . $key . '-field">',
+                '#suffix' => '</div>',
+            );
+        }
+    }
+
+    return $element;
+}
+
+/**
+ * Implements hook_field_formatter_info().
+ */
+function identity_field_formatter_info()
+{
+    return array(
+        'identity_card_default' => array(
+            'label' => t('Default'),
+            'field types' => array('identity_card'),
+        ),
+    );
+}
+
+/**
+ * Implements hook_field_formatter_view().
+ */
+function identity_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display)
+{
+    $element = array();
+
+    switch ($display['type']) {
+        case 'identity_card_default' :
+            $headers = array(
+                t('Identity ID'),
+                t('Issuer place'),
+            );
+
+            $element[0]['#markup'] = theme('table', array('header' => $headers, 'rows' => $items));
+
+            break;
+    }
+
+    return $element;
+}

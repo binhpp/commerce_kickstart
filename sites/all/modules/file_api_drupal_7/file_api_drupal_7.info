@@ -1,0 +1,6 @@
+name = File API
+description = This module file api.
+package = @custom
+core = 7.x
+version = "7.x-0.1"
+project = "drupal"

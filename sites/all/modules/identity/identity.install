@@ -1,0 +1,35 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: monster
+ * Date: 30/07/2015
+ * Time: 17:23
+ */
+
+/**
+ * Implements hook_field_schema()
+ */
+function identity_field_schema($field) {
+    switch ($field['type']) {
+        case 'identity_card' :
+            $columns = array(
+                'identity_id' => array(
+                    'description' => 'The Identity ID',
+                    'type' => 'varchar',
+                    'length' => 20,
+                    'not null' => TRUE,
+                    'default' => '',
+                ),
+                'issuer_place' => array(
+                    'description' => 'Issuer Place',
+                    'type' => 'varchar',
+                    'length' => 255,
+                    'not null' => TRUE,
+                    'default' => '',
+                ),
+            );
+    }
+    return array(
+        'columns' => $columns,
+    );
+}

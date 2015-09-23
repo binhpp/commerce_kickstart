@@ -1,0 +1,41 @@
+<?php
+module_load_include('inc','rest_provides','includes/rest_provides.remote');
+module_load_include('inc','rest_provides','includes/rest_provides.data');
+/**
+ * Created by PhpStorm.
+ * User: root
+ * Date: 04/09/2015
+ * Time: 15:15
+ */
+/**
+ * Implements hook_menu()
+ */
+function rest_provides_menu() {
+    $items['admin/config/rest-provides'] = array(
+        'title' => 'Rest Provides',
+        'page callback' => 'system_admin_menu_block_page',
+        'position' => 'left',
+        'weight' => -20,
+        'access arguments' => array('access administration pages'),
+        'file' => 'system.admin.inc',
+        'file path' => drupal_get_path('module', 'system'),
+    );
+    $items['admin/config/rest-provides/setting'] = array(
+        'title' => 'Rest Provides Service',
+        'description' => 'Configuration for package System access',
+        'page callback' => 'drupal_get_form',
+        'page arguments' => array('rest_provides_setting_form'),
+        'access arguments' => array('access administration pages'),
+        'file' => 'includes/rest_provides.config.inc'
+    );
+    return $items;
+}
+/**
+ * Implements hook_views_api()
+ */
+function rest_provides_views_api() {
+    return array(
+        'api' => 3,
+        'path' => drupal_get_path('module', 'rest_provides'). '/includes/views',
+    );
+}

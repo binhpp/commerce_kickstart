@@ -1,0 +1,100 @@
+<?php
+/**
+ * Implement hook_entity_info()
+ */
+function rest_package_entity_info() {
+    $info['rest_package'] = array(
+        'label' => t('Rest Package Entity'),
+        'controller class' => 'RestPackageController',
+        'label callback' => 'rest_package_generate_label',
+        'fieldable' => FALSE,
+//    'access callback' => 'subscription_rest_pakage_access_callback',
+        'uri callback' => 'rest_package_uri_callback',
+        'entity keys' => array(
+            'id' => 'id',
+            'label' => 'name',
+        ),
+        'bundles' => array(),
+        'view modes' => array(
+            'full' => array(
+                'label' => t('Full'),
+                'custom settings' => TRUE,
+            ),
+        ) ,
+    );
+
+    return $info;
+}
+function rest_package_generate_label($entity, $entity_type) {
+    return isset($entity) ? $entity->name : 'Rest Package Object';
+}
+function rest_package_uri_callback($entity) {
+    return array(
+        'path' => 'rest_package/object/' . $entity->id,
+    );
+}
+/**
+ * Implement hook_menu()
+ */
+function rest_package_menu() {
+    $items = array();
+    $items['rest-package'] = array(
+        'title' => 'List package',
+        'description' => 'The package list entity',
+        'page callback' => 'rest_package_list_entity',
+        'access callback' => TRUE,
+        'file' => 'rest_package_inclusion.inc',
+    );
+    $items['rest-package/add'] = array(
+        'title' => 'Add an new package',
+        'description' => 'The form implement add a new package',
+        'page callback' => 'rest_package_add',
+        'access callback' => TRUE,
+        'type' => MENU_LOCAL_ACTION,
+        'file' => 'rest_package_inclusion.inc',
+    );
+    $items['rest-package/%rest_package'] = array(
+        'title' => 'View package',
+        'description' => 'View package information',
+        'page callback' => 'rest_package_view',
+        'page arguments' => array(1),
+        'access callback' => TRUE,
+        'file' => 'rest_package_inclusion.inc',
+    )
+    ;$items['rest-package/%rest_package/views'] = array(
+        'title' => 'Views',
+        'type' => MENU_DEFAULT_LOCAL_TASK,
+        'weight' => -10,
+    );
+    $items['rest-package/%rest_package/edit'] = array(
+        'title' => 'Edit',
+        'description' => 'Edit package information',
+        'page callback' => 'drupal_get_form',
+        'page arguments' => array('rest_package_form',1),
+        'access callback' => TRUE,
+        'type' => MENU_LOCAL_TASK,
+        'file' => 'rest_package_inclusion.inc',
+    );
+
+    return $items;
+}
+
+function rest_package_load_multiple($ids = FALSE, $conditions = array(), $reset = FALSE) {
+    return entity_load('rest_package', $ids, $conditions, $reset);
+}
+
+function rest_package_load($id = NULL, $reset = FALSE) {
+    $id = (isset($id) ? array($id) : array());
+    $rest = entity_load('rest_package', $id, array(), $reset);
+    return $rest ? reset($rest) : FALSE;
+}
+
+/**
+ * Implement hook_views_api()
+ */
+function rest_package_views_api() {
+    return array(
+        'api' => 3,
+        'path' => drupal_get_path('module', 'rest_package').'/includes/views',
+    );
+}

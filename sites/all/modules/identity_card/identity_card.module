@@ -1,0 +1,126 @@
+<?php
+/**
+ * @file
+ * An example field using the Field API.
+ *
+ */
+/*
+ * implement hook_field_info()
+ */
+function identity_card_field_info() {
+    return array(
+        'identity_card_info' => array(
+            'label' => t('Identity Card'),
+            'description' => t('Your identity card information.'),
+            'default_widget' => 'identity_card_widget',
+            'default_formatter' => 'identity_card_simple_format',
+        ),
+    );
+}
+function identity_card_field_schema($field) {
+    $columns = array(
+        'id_number' => array('type' => 'serial', 'size' => 'big', 'not null' => TRUE),
+        'issuer_place' => array('type' => 'varchar', 'length' => '255', 'not null' => TRUE),
+    );
+    $indexes = array(
+        'id_number' => array('id_number'),
+    );
+    return array(
+        'columns' => $columns,
+        'indexes' => $indexes,
+    );
+}
+/**
+ * Implements hook_field_validate().
+ *
+ * Verifies that the RGB field as combined is valid
+ * (6 hex digits with a # at the beginning).
+ */
+function identity_card_field_validate($entity_type, $entity, $field, $instance, $langcode,
+                                      $items, &$errors) {
+    foreach($items as $delta => $item) {
+        if(!empty($item['id_number']) && !is_numeric($items['id_number'])) {
+            $errors[$field['id_number']][$langcode][$delta][] = array(
+                'error' => 'identity_card_invalid',
+                'message' => t('Id number must be a numeric.'),
+            );
+        }
+    }
+}
+/**
+ * Implements hook_field_is_empty().
+ */
+function identity_card_field_is_empty($item, $field) {
+    return empty($item['id_number']);
+}
+/**
+ * Implements hook_field_formatter_info().
+ */
+function identity_card_field_formatter_info() {
+    return array(
+// This formatter just displays the hex value in the color indicated.
+        'identity_card_simple_format' => array(
+            'label' => t('Simple identity card formatter'),
+            'field types' => array('identity_card_info'),
+        ),
+    );
+}
+/**
+ * Implements hook_field_formatter_view().
+ */
+function identity_card_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
+    $element = array();
+    switch ($display ['type']) {
+        case 'identity_card_simple_format':
+            foreach ($items as $delta => $item) {
+                $element [$delta]['#markup'] =
+                    '<p>'.t('The id number of this identity card is @id_number', array('@id_number' => $item['id_number'])).'</p>'
+                    .'<p>'.t('The issuer place of this identity card is @issuer_place', array('@issuer_place' => $item['issuer_place'])).'</p>';
+            }
+        break;
+    }
+    return $element;
+}
+/**
+ * Implements hook_field_widget_info().
+ */
+function identity_card_field_widget_info() {
+    return array(
+        'identity_card_form' => array(
+            'label' => t('Identity card form'),
+            'field types' => array('identity_card_info'),
+        ),
+    );
+}
+function identity_card_field_widget_form(&$form, &$form_state, $field, $instance, $langcode, $items, $delta, $element) {
+    $value_id_number = isset($items[$delta]['id_number']) ? $items[$delta]['id_number'] : '';
+    $value_issuer_place = isset($items[$delta]['issuer_place']) ? $items[$delta]['issuer_place'] : '';
+    $element += array(
+        '#delta' => $delta,
+    );
+    $element['id_number'] = array();
+    $element['issuer_place'] = array() ;
+    switch ($instance['widget']['type']) {
+        case 'identity_card_form':
+            $element['id_number'] += array(
+                '#title' => t('ID Number'),
+                '#type' => 'textfield',
+                '#default_value' => $value_id_number,
+                // Allow a slightly larger size than the field length to allow for some
+                // configurations where all characters won't fit in input field.
+                '#size' => 60,
+                '#maxlength' => 255,
+            );
+
+            $element['issuer_place'] += array(
+                '#title' => t('Issuer Place'),
+                '#type' => 'textfield',
+                '#default_value' => $value_issuer_place,
+                // Allow a slightly larger size than the field length to allow for some
+                // configurations where all characters won't fit in input field.
+                '#size' => 60,
+                '#maxlength' => 255,
+            );
+    }
+    return $element;
+}

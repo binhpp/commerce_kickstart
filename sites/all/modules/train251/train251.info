@@ -1,0 +1,8 @@
+name = Train 251
+description = Dealing with remote data, integrate with entity and views
+core = 7.x
+package = Training
+
+files[] = includes/views/handlers/subscription_rest_package_handler_field.inc
+files[] = includes/views/plugins/subscription_rest_package_plugin_query.inc
+files[] = includes/views/handlers/views_handler_filter_subscription_rest_package_field.inc

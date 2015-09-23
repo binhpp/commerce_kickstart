@@ -1,0 +1,5 @@
+name = identity card
+description = Defining custom field types, using entity reference
+core = 7.x
+package = @custom
+files[] = identity.module

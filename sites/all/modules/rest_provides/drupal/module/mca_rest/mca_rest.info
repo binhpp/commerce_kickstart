@@ -1,0 +1,25 @@
+name = MCA REST
+description = Base module for REST-enabled modules of MCA
+package = MCA
+
+core = 7.x
+
+; Module includes
+files[] = includes/http_json.inc
+
+; Views includes
+files[] = includes/views/mca_rest_views_join_delayed_query.inc
+files[] = includes/views/mca_rest_views_join_ref_field.inc
+
+files[] = includes/views/handler/mca_rest_views_handler_field.inc
+files[] = includes/views/handler/mca_rest_views_handler_field_date.inc
+files[] = includes/views/handler/mca_rest_views_handler_filter_date.inc
+files[] = includes/views/handler/mca_rest_views_handler_filter_auto_click.inc
+files[] = includes/views/handler/mca_rest_views_handler_field_meta.inc
+files[] = includes/views/handler/mca_rest_views_handler_filter_meta.inc
+files[] = includes/views/handler/mca_rest_views_handler_argument_meta.inc
+files[] = includes/views/handler/mca_rest_views_handler_sort.inc
+
+; Information added
+version = '7.x-0.12-alpha2'
+project = mca_rest

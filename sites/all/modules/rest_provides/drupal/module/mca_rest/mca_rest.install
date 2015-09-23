@@ -1,0 +1,25 @@
+<?php 
+/**
+ * implements hook_install
+ */
+function mca_rest_install() {
+	// assign default settings
+	foreach (mca_rest_defaults() as $key => $value) {
+		variable_set($key, $value);
+	}
+	
+}
+
+function mca_rest_uninstall() {
+	// remove default settings
+	foreach (array_keys(mca_rest_defaults()) as $key) {
+		variable_del($key);
+	}
+}
+
+function mca_rest_defaults() {
+	return array(
+	  'mca_rest_conn_type' => 'drupal',
+	  'mca_rest_conn_timeout' => 3,
+	);
+}

@@ -1,0 +1,44 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: monster
+ * Date: 14/08/2015
+ * Time: 12:07
+ */
+
+/**
+ * Implements hook_menu().
+ */
+function train251_menu()
+{
+  $items = array();
+
+  return $items;
+}
+
+/**
+ * Implements hook_views_api().
+ */
+function train251_views_api()
+{
+  return array(
+    'api' => 3,
+    'path' => drupal_get_path('module', 'train251') . '/includes/views',
+    );
+}
+
+/**
+ * Implements hook_views_plugins().
+ */
+function train251_views_plugins()
+{
+  //Views/includes/plugins.inc line 260
+  $plugin = array();
+  $plugin['query']['subscription_rest_package_plugin_query'] = array(
+    'title' => t('Subscription Rest Package'),
+    'help' => t('Subscription Rest Package Help'),
+    'handler' => 'subscription_rest_package_plugin_query',
+  );
+  return $plugin;
+}
+

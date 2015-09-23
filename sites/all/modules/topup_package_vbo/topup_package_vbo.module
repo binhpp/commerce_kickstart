@@ -1,0 +1,133 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: root
+ * Date: 26/08/2015
+ * Time: 13:46
+ */
+/**
+ * Implement hook_action_info()
+ */
+function topup_package_vbo_action_info() {
+    return array(
+        'topup_package_vbo_action' => array(
+            'type' => 'entity',
+            'label' => t('Change Status'),
+            'behavior' => array('changes_property'),
+            'configurable' => FALSE,
+            'vbo_configurable' => TRUE,
+            'triggers' => array('any'),
+        ),
+        'topup_package_vbo_amount_action' => array(
+            'type' => 'entity',
+            'label' => t('Change Amount'),
+            'behavior' => array('changes_property'),
+            'configurable' => FALSE,
+            'vbo_configurable' => TRUE,
+            'triggers' => array('any'),
+        ),
+    );
+}
+function topup_package_vbo_action(&$object, $context) {
+    $message = t('Package name is %name has been change, %status', array(
+        '%name' => $object->name,
+        '%status' => $context['status'],
+    ));
+    drupal_set_message($message);
+    switch($context['status']) {
+        case 'enable':
+            $object->status = 'enabled';
+            break;
+        case 'disable':
+            $object->status = 'disabled';
+            break;
+    }
+}
+
+function topup_package_vbo_action_form($form, &$form_state) {
+    $form = array();
+    $form['status'] = array(
+        '#type' => 'select',
+        '#title' => t('Choose your status'),
+        '#options' => array(
+            'enable' => t('Enabled'),
+            'disable' => t('Disabled'),
+        ),
+        '#required' => TRUE,
+    );
+    return $form;
+}
+
+function topup_package_vbo_action_submit($form, $form_state) {
+    $return = array();
+    $return['status'] = $form_state['values']['status'];
+    return $return; //Note, return value here must be an array.
+}
+
+function topup_package_vbo_amount_action(&$object, $context) {
+    $message = t('Package name is %name has been change amount to %amount000', array(
+        '%name' => $object->name,
+        '%amount' => $context['amount'],
+    ));
+    drupal_set_message($message);
+    $object->amount = $context['amount'].'000';
+}
+function topup_package_vbo_amount_action_form ($form, &$form_state) {
+    $form = array();
+    $form['amount'] = array(
+        '#type' => 'select',
+        '#title' => 'Amount',
+        '#description' => 'Select package amount',
+        '#required' => TRUE,
+        '#options' => drupal_map_assoc(array('10' => '010', '20' => '020', '30' => '030', '50' => '050', '100' => '100',
+            '200' => '200', '500' => '500')),
+        '#default_value' => '10',
+    );
+    return $form;
+}
+
+function topup_package_vbo_amount_action_submit($form, &$form_state) {
+    $return = array();
+    $return['amount'] = $form_state['values']['amount'];
+    return $return;
+}
+
+function topup_package_vbo_views_data_alter(&$data)
+{
+    if ($data['topup_package']['table']['entity type'] == 'topup_package') {
+        $data['topup_package']['views_bulk_operations'] = array(
+            'title' => $data['topup_package']['table']['group'],
+            'group' => t('Bulk Data'),
+            'help' => t('Provide a checkbox to select the row for bulk operations.'),
+            'real field' => 'id',
+            'field' => array(
+                'handler' => 'topup_package_vbo_handler_field_operations',
+                'click sortable' => FALSE,
+            ),
+        );
+
+    }
+}
+class topup_package_vbo_handler_field_operations extends views_bulk_operations_handler_field_operations {
+    function get_entity_type() {
+        $base_table = $this->view->base_table;
+
+        if (!empty($this->options['relationship']) && $this->options['relationship'] != 'none') {
+            $relationships = $this->view->display_handler->get_option('relationships');
+            $options = $relationships[$this->options['relationship']];
+            $data = views_fetch_data($options['table']);
+            $base_table = $data[$options['field']]['relationship']['base'];
+        }
+        // The base table is now known, use it to determine the entity type.
+        foreach (entity_get_info() as $entity_type => $info) {
+            if (isset($info['base table']) && $info['base table'] == $base_table) {
+                return $entity_type;
+            }
+            elseif (isset($info['revision table']) && $info['revision table'] == $base_table) {
+                $this->revision = TRUE;
+                return $entity_type;
+            }
+        }
+        return 'topup_package';
+    }
+}

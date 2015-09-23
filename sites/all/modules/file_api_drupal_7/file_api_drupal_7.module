@@ -1,0 +1,241 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: root
+ * Date: 19/08/2015
+ * Time: 15:37
+ */
+/**
+ * Implement hook_menu()
+ */
+function file_api_drupal_7_menu() {
+    $items = array();
+    $items['file-api-drupal-7'] = array(
+        'title' => 'File API',
+        'description' => 'Save, Download file API',
+        'page callback' => 'drupal_get_form',
+        'access callback' => TRUE,
+        'page arguments' => array('file_api_form'),
+    );
+    $items['file-api-drupal-7/save'] = array(
+        'title' => 'Download | Delete',
+        'type' => MENU_DEFAULT_LOCAL_TASK,
+    );
+    $items['file-api-drupal-7/upload'] = array(
+        'title' => 'Upload File API',
+        'description' => 'Upload file API',
+        'page callback' => 'drupal_get_form',
+        'access callback' => TRUE,
+        'page arguments' => array('file_api_upload_form'),
+        'type' => MENU_LOCAL_TASK,
+    );
+    $items['file-api-drupal-7-download-page/%'] = array(
+        'title' => 'File API',
+        'description' => 'Download file API',
+        'page callback' => 'download_file_api',
+        'page arguments' => array(1),
+        'access callback' => TRUE,
+        'type' => MENU_CALLBACK,
+    );
+    $items['file-api-drupal-7-delete-page/%'] = array(
+        'title' => 'File API',
+        'description' => 'Download file API',
+        'page callback' => 'delete_file_api',
+        'page arguments' => array(1),
+        'access callback' => TRUE,
+        'type' => MENU_CALLBACK,
+    );
+    return $items;
+}
+function file_api_form($form, $form_state) {
+    $defaul_value = "public://";
+    $form['file_save'] = array(
+        '#type' => 'fieldset',
+        '#title' => t('Write to a file'),
+        '#prefix' => '<div id="field-code-wrapper">',
+        '#suffix' => '</div>',
+    );
+    $form['file_save']['write_file'] = array(
+        '#type' => 'textarea',
+        '#title' => t('Enter something you would like to write to a file'). ' ' . date('Y/m/d'),
+    );
+    $form['file_save']['destination'] = array(
+        '#type' => 'textfield',
+        '#title' => t('Optional: Enter the streamwrapper saying where it should be written'),
+        '#description' => t('This may be public:// or s3://mbvmva'),
+    );
+    $form['file_save']['submit'] = array(
+        '#type' => 'submit',
+        '#value' => t('Save'),
+        '#submit' => array('file_managed_write_submit'),
+    );
+    $form['file_save']['download'] = array(
+        '#type' => 'submit',
+        '#value' => t('Download'),
+        '#submit' => array('file_managed_download_submit'),
+    );
+    $form['file_save']['delete_submit'] = array(
+        '#type' => 'submit',
+        '#value' => t('Delete file'),
+        '#submit' => array('file_manage_delete_submit'),
+    );
+
+
+    $form['table'] = array(
+        '#type' => 'fieldset',
+        '#prefix' => '<div id="field-code-wrapper">',
+        '#suffix' => '</div>',
+    );
+    /**
+     * show table
+     */
+    $header = array(
+        'filename' => t('Filename'),
+        'url' => t('Url'),
+        'options' => t('Options'),
+    );
+    $directory = isset($form_state['values']['destination']) ? $form_state['values']['destination'] : $defaul_value;
+    if (is_dir($directory)) {
+        $mask = '/.*\.*$/';
+        $files = file_scan_directory($directory, $mask, array('recurse' => FALSE));
+        $options = array();
+        foreach ($files as $key => $file) {
+            $options[] = array(
+                'filename' => $file->filename,
+                'url' => is_file($key) ? l($key, 'file-api-drupal-7-download-page/' . bin2hex($key)) : $key,
+                'options' => is_file($key) ? l('Delete', 'file-api-drupal-7-delete-page/' . bin2hex($key)) : '',
+            );
+        }
+        $form['table'] = array(
+            '#type' => 'tableselect',
+            '#header' => $header,
+            '#options' => $options,
+        );
+    }
+    return $form;
+}
+function file_api_upload_form($form, $form_state) {
+    $form['file_upload'] = array(
+        '#type' => 'fieldset',
+        '#title' => t('Upload to a file'),
+    );
+    $form['file_upload']['uri'] = array(
+        '#type' => 'textfield',
+        '#title' => t('Optional: Enter the streamwrapper saying where it should be written'),
+        '#description' => t('This may be public:// or s3://mbvmva'),
+    );
+    $form['file_upload']['file'] = array(
+        '#type' => 'file',
+        '#title' => t('Upload file'),
+    );
+    $form['file_upload']['submit'] = array(
+        '#type' => 'submit',
+        '#value' => t('Upload'),
+        '#submit' => array('file_managed_upload_submit'),
+    );
+    return $form;
+}
+function file_api_upload_form_validate($form, &$form_state) {
+    $file = file_save_upload('file');
+    $directory = $form_state['values']['uri'];
+    if ($file) {
+        if ($file = file_move($file, $directory)) {
+            $form_state['storage']['file'] = $file;
+        }
+        else {
+            form_set_error('file', t("Failed to write the uploaded file to the site's file folder."));
+        }
+    }
+    else {
+        form_set_error('file', t('No file was uploaded.'));
+    }
+}
+function file_managed_write_submit($form, &$form_state) {
+    $data = $form_state['values']['write_file'];
+    $uri = !empty($form_state['values']['destination']) ? $form_state['values']['destination'] : NULL;
+    $file_object = file_save_data($data, $uri, FILE_EXISTS_RENAME);
+    drupal_set_message(t('This file have been save successfully, filename: @filename.'), array('@filename' => $file_object->filename));
+}
+function file_managed_upload_submit($form, &$form_state) {
+    $file = $form_state['storage']['file'];
+    unset($form_state['storage']['file']);
+    $file->status = FILE_STATUS_PERMANENT;
+    file_save($file);
+    drupal_set_message(t('The file has been uploaded successfully, filename: @filename.', array('@filename' => $file->filename)));
+}
+function file_managed_download_submit($form, &$form_sate) {
+    $file = $form_sate['values']['destination'];
+    DownloadFileManage($file);
+    drupal_set_message(t('The file has been download successfully, filename: @filename.', array('@filename' => $file->filename)));
+}
+function DownloadFileManage($file) { // $file = include path
+    if(file_exists($file)) {
+        header('Content-Description: File Transfer');
+        header('Content-Type: application/octet-stream');
+        header('Content-Disposition: attachment; filename='.basename($file));
+        header('Content-Transfer-Encoding: binary');
+        header('Expires: 0');
+        header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+        header('Pragma: public');
+        header('Content-Length: ' . filesize($file));
+        ob_clean();
+        flush();
+        readfile($file);
+        exit;
+    }
+}
+function file_manage_delete_submit($form, &$form_state) {
+    $uri = $form_state['values']['destination'];
+    $file_object = file_example_get_managed_file($uri);
+    if (!empty($file_object)) {
+        $result = file_delete($file_object);
+        if ($result !== TRUE) {
+            drupal_set_message(t('Failed deleting managed file %uri. Result was %result',
+                array(
+                    '%uri' => $uri,
+                    '%result' => print_r($result, TRUE),
+                )
+            ), 'error');
+        }
+        else {
+            drupal_set_message(t('Successfully deleted managed file %uri', array('%uri' => $uri)));
+            $_SESSION['file_example_default_file'] = $uri;
+        }
+    }
+    // Else use file_unmanaged_delete().
+    else {
+        $result = file_unmanaged_delete($uri);
+        if ($result !== TRUE) {
+            drupal_set_message(t('Failed deleting unmanaged file %uri', array('%uri' => $uri, 'error')));
+        }
+        else {
+            drupal_set_message(t('Successfully deleted unmanaged file %uri', array('%uri' => $uri)));
+            $_SESSION['file_example_default_file'] = $uri;
+        }
+    }
+}
+function download_file_api($uri) {
+    $path = hex2bin($uri);
+    if(is_file($path)){
+        DownloadFileManage($path);
+    }
+}
+function delete_file_api($uri) {
+    $path = hex2bin($uri);
+    if (is_file($path)) {
+        $file = get_file_api($path);
+        file_delete($file);
+        drupal_set_message(t('File @filename has been deleted', array('@filename' => $file->filename)));
+    }
+    drupal_goto('file_api_training');
+}
+function get_file_api($path) {
+    $sql = "SELECT * FROM file_managed WHERE uri = '" . $path . "'";
+    $result_temp = db_query($sql);
+
+    foreach ($result_temp->fetchAll() as $key => $file) {
+        return $file;
+    }
+
+    return FALSE;
+}

@@ -1,0 +1,125 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: root
+ * Date: 10/09/2015
+ * Time: 15:22
+ */
+/**
+ * Implement hook_menu()
+ */
+function change_installment_payment_menu() {
+    $items = array();
+    $items['admin/config/commerce'] = array(
+        'title' => 'Commerce',
+        'page callback' => 'system_admin_menu_block_page',
+        'access arguments' => array('access administration pages'),
+        'file' => 'system.admin.inc',
+        'file path' => drupal_get_path('module', 'system')
+    );
+    $items['admin/config/commerce/installment'] = array(
+        'title' => 'Change installment',
+        'page callback' => 'drupal_get_form',
+        'page arguments' => array('change_installment_payment'),
+        'access arguments' => array('accsess administration pages'),
+        'file' => 'includes/change_installment_payment.config.inc'
+    );
+    $items['change-installment-payment'] = array(
+        'title' => 'Change Installment Payment',
+        'description' => 'Change Installment Payment use batch api',
+        'page callback' => 'drupal_get_form',
+        'page arguments' => array('batch_change_installment_payment_form'),
+        'access callback' => TRUE,
+    );
+    return $items;
+}
+function batch_change_installment_payment_form() {
+    $form['history'] = array(
+        '#type' => 'item',
+        '#markup' => 'History: <pre>' . variable_get('change_installment_payment_history', '') . '</pre>',
+        '#description' => t('*Note*, this process cannot re-do, please check carefully before process')
+    );
+    $form['submit'] = array(
+        '#type' => 'submit',
+        '#value' => 'Start',
+    );
+    $form['clear_history'] = array(
+        '#type' => 'submit',
+        '#access' => user_access("administer_clear_product_update"),
+        '#value' => t('Clear history'),
+        '#submit' => array('change_installment_clear_history_submit')
+    );
+    return $form;
+}
+function change_installment_clear_history_submit($form, &$form_state) {
+    global $user;
+    $message = $user->name . " " . date("d-m-Y H:i:s") . " " . t("Clear history");
+    variable_set('change_installment_payment_history', $message);
+
+}
+
+function batch_change_installment_payment_form_submit($form, &$form_state) {
+    $batch_file = change_installment_operations();
+    batch_set($batch_file);
+}
+
+function change_installment_operations() {
+    $batch = array(
+        'title' => t('Apply change installment'),
+        'operations' => array(
+            array('change_installment_payment_detail', array()),
+        ),
+        'init_message' => t('Change installment is starting.'),
+        'progress_message' => t('Change installment is running...'),
+        'error_message' => t('Change installment has encountered an error.'),
+        'finished' => 'change_installment_payment_finished',
+    );
+    return $batch;
+}
+
+function change_installment_payment_detail($item, $row, &$context) {
+    global $user;
+    $products = entity_load("commerce_product");
+    $message = t('Total: @total', array('@total' => count($products)));
+    $count_success = 0;
+    $count_error = 0;
+    $count_bypass = 0;
+    foreach($products as $product){
+        $product_wp = entity_metadata_wrapper("commerce_product",$product);
+        if(isset($product->field_payment_term)) {
+            try {
+                $commerce_installment = $product_wp->field_commerce_installment->value();
+                if($commerce_installment == 0 || !empty($commerce_installment)) {
+                    if(empty($product->field_payment_term[LANGUAGE_NONE][0]['value'])) {
+                        $payment_term = 1;
+                    } else {
+                        $payment_term = $product->field_payment_term[LANGUAGE_NONE][0]['value'];
+                    }
+                    $price = $product_wp->commerce_price->amount->value();
+                    $a = variable_get('change_installment_payment');
+                    $per_mon = mc_payment_term_round_up($price / $payment_term, $a);
+                    $product->field_commerce_installment[LANGUAGE_NONE][0]['value'] = $per_mon;
+                    commerce_product_save($product);
+                    $count_success++;
+                } else {
+                    $count_bypass++;
+                }
+            } catch (Exception $e) {
+                $count_error++;
+                watchdog_exception('product_update', $e);
+            }
+        } else {
+            $count_bypass++;
+        }
+    }
+    $message .= ', ' .t('success: @success, error: @error, bypass: @bypass', array('@success' => $count_success, '@error' => $count_error, '@bypass' => $count_bypass));
+    $message .= '. '. date('d-m-Y H:i:s') .' '. $user->name;
+    $history = $message  .'<br>' .variable_get('change_installment_payment_history', '') ;
+    variable_set("change_installment_payment_history", $history);
+
+}
+function change_installment_payment_finished($success) {
+    if ($success) {
+        drupal_set_message(t('Change installment payment successfully'));
+    }
+}

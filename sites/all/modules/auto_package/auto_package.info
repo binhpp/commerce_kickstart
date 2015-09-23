@@ -1,0 +1,11 @@
+name = Auto Package
+description = The module autotopup package
+core = 7.x
+version = '7.x-0.1'
+package = @custom
+
+dependencies[] = views
+dependencies[] = entity
+
+files[] = includes/views/plugins/auto_package_views_plugin_query.inc
+files[] = includes/views/handlers/auto_package_handler_field_operations.inc

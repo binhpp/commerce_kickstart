@@ -1,0 +1,14 @@
+name = Package
+description = This module topup package.
+package = @custom
+core = 7.x
+version = "7.x-0.1"
+project = "drupal"
+; Module includes
+files[] = includes/topup_package.controller.inc
+; Views includes
+files[] = includes/views/topup_package.views.inc
+files[] = includes/views/topup_package.views_default.inc
+files[] = includes/views/handlers/views_handler_field_topup_package.inc
+files[] = includes/views/handlers/views_handler_filter_topup_package.inc
+files[] = includes/views/plugins/topup_package_views_plugin_query.inc

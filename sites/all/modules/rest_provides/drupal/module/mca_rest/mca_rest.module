@@ -1,0 +1,394 @@
+<?php
+/**
+ * create http client object
+ * @param array $options
+ * @throws RemoteRestException
+ */
+function mca_rest_http_client(&$options = array()) {
+  if (is_array($options) ) {
+    $type = variable_get('mca_rest_conn_type', 'pecl_http');
+    if ($type == 'pecl_http' ) {
+      $client = new http\Client();
+      $client->setOptions(array_merge(array(
+        'connecttimeout' => 3, 
+        'timeout' => 5, 
+        'useragent' => 'Drupal MCA Rest Client'
+      ), $options));
+      return $client;
+    }
+    elseif ($type == 'drupal' ) {
+      return new RestDrupalClient($options);
+    }
+    else {
+      throw new RemoteRestException('expecting [drupal|pecl_http] for $type: ' . $type);
+    }
+  }
+  elseif ($options === FALSE )
+    return FALSE;
+  else // if (is_object($client))
+    return $options;
+}
+
+/**
+ * return HttpRequest with preconfigure condition
+ * @param string $path
+ * @param string $method
+ * @param array $data
+ */
+function mca_rest_http_request($url, $method = 'GET', &$data = NULL) {
+  $type = variable_get('mca_rest_conn_type', 'pecl_http');
+  if ($type == 'pecl_http' ) {
+    $body = new http\Message\Body();
+    $body->append($data);
+    $req = new http\Client\Request($method, $url, NULL, $body);
+  }
+  elseif ($type == 'drupal' ) {
+    $req = new RestDrupalRequest(array(
+      'url' => $url, 
+      'method' => $method, 
+      'data' => $data
+    ));
+  }
+  else {
+    throw new RemoteRestException('expecting [drupal|pecl_http] for $type: ' . $type);
+  }
+  
+  return $req;
+}
+
+/**
+ *
+ * @param string $url
+ * @param array $params
+ * @param callable $callback
+ * @param mixed $client
+ */
+function mca_rest_http_get($url, $params = NULL, $callback = NULL, $client = array()) {
+  $req = mca_rest_http_request($url, 'GET');
+  if ($params ) $req->setQuery($params);
+  
+  $http = mca_rest_http_client($client);
+  if ($http ) {
+    if ($callback )
+      $http->enqueue($req, $callback);
+    else
+      $http->enqueue($req);
+  }
+  
+  return $http ? $http : $req;
+}
+
+/**
+ *
+ * Enter description here ...
+ * @param string $path
+ * @param array $data
+ * @param callable $callback
+ * @param mixed $client
+ */
+function mca_rest_http_post($url, $data, $callback = NULL, $client = array()) {
+  $json = json_encode($data);
+  if (! $json ) throw new RemoteRestException('Unable to serialize data for HTTP POST', 999);
+  $req = mca_rest_http_request($url, 'POST', $json);
+  $req->setContentType('application/json');
+  // $req->setHeader('Content-Length', str_)
+  
+  $http = mca_rest_http_client($client);
+  if ($http ) {
+    if ($callback )
+      $http->enqueue($req, $callback);
+    else
+      $http->enqueue($req);
+  }
+  
+  return $http ? $http : $req;
+}
+
+function mca_rest_http_form($url, $params, $callback, $client = array()) {
+  $data = '';
+  foreach ( $params as $name => $value )
+    $data .= $name . '=' . urlencode($value) . '&';
+  $length = strlen($data);
+  $data = $length >= 0 ? substr($data, 0, $length - 1) : $data;
+  $req = mca_rest_http_request($url, 'POST', $data);
+  $req->setContentType('application/x-www-form-urlencoded');
+  
+  $http = mca_rest_http_client($client);
+  if ($http ) {
+    if ($callback )
+      $http->enqueue($req, $callback);
+    else
+      $http->enqueue($req);
+  }
+  
+  return $http?$http:$req;
+}
+
+function mca_rest_array2obj(&$arr, $depth) {
+  if (! is_array($arr) ) return $arr;
+  $obj = new stdClass();
+  foreach ( $arr as $key => &$value ) {
+    $obj->{$key} = $depth > 0 && is_array($value) ? mca_rest_array2obj($value, $depth - 1) : $value;
+  }
+  return $obj;
+}
+
+/**
+ * parse json from a response
+ * @param http/Client/Response $res
+ * @param int $depth
+ * @param boolean $check_json
+ * @throws Exception
+ */
+function mca_rest_http_json_parse($res, $depth = 1, $check_json = TRUE) {
+  $code = $res->getResponseCode();
+  $contentType = $res->getHeader('Content-Type');
+  if ($code != 200 ) {
+    $detail = $res->getBody()->toString();
+    if (strpos($contentType, 'application/json') === 0 ) {
+      $obj = json_decode($detail);
+      if (! empty($obj) ) throw new RemoteRestException($obj);
+    }
+    throw new Exception('Unexpected response code: ' . $res->getResponseCode() . "\n" . $detail);
+  }
+  
+  if ($check_json && strpos($contentType, 'application/json') !== 0 ) throw new Exception('Unexpected content type: ' . $contentType);
+  
+  $body = $res->getBody()->toString();
+  $obj = json_decode($body, TRUE);
+  
+  if (is_null($obj) ) throw new Exception('Invalid JSON ' . $body);
+  
+  $ret = $depth > 0 ? mca_rest_array2obj($obj, $depth - 1) : $obj;
+  
+  return $ret;
+}
+
+/**
+ * send request and parse response
+ * @param http/Client $client
+ * @param int $depth
+ * @param boolean $check_json
+ * @throws Exception
+ */
+function mca_rest_http_json_send($client, $depth = 1, $check_json = TRUE) {
+  $client->send();
+  if ($client->count() > 1 ) {
+    $res = array();
+    while ( $res = $client->getResponse() ) {
+      $res[] = mca_rest_http_json_parse($res, $depth, $check_json);
+    }
+  }
+  else {
+    $res = mca_rest_http_json_parse($client->getResponse(), $depth, $check_json);
+  }
+  return $res;
+}
+
+/**
+ * retrieve UTC timezone for datetime serialization/deserialization
+ */
+function mca_rest_datetime_tz() {
+  global $_mca_rest_datetime_tz;
+  if (! isset($_mca_rest_datetime_tz) ) {
+    $tzlist = DateTimeZone::listIdentifiers(DateTimeZone::UTC);
+    $_mca_rest_datetime_tz = new DateTimeZone(reset($tzlist));
+  }
+  return $_mca_rest_datetime_tz;
+}
+
+/**
+ * format datetime object to String to 
+ * @param mixed $datetime
+ * @param integer $depth
+ */
+function mca_rest_datetime_format($datetime, $depth = 1) {
+  if ($datetime == null ) {
+    return null;
+  }
+  else 
+    if ($datetime instanceof DateTime ) {
+      if ($datetime->getTimezone()->getName() != 'UTC' ) 
+        $datetime->setTimezone(mca_rest_datetime_tz());
+      return $datetime->format("Y-m-d\TH:i:s");
+    }
+    elseif ($depth > 0 ) {
+      if (is_object($datetime) ) {
+        $array = get_object_vars($datetime);
+        foreach ( $array as $var => &$value ) {
+          if (empty($value) ) continue;
+          $parse = $value instanceof DateTime || is_object($value) || is_array($value);
+          if ($parse ) $datetime->$var = mca_rest_datetime_format($value, $depth - 1);
+        }
+      }
+      else 
+        if (is_array($datetime) ) {
+          foreach ( $datetime as $key => $value ) {
+            $parse = $value instanceof DateTime || is_object($value) || is_array($value);
+            if ($parse) $datetime[$key] = mca_rest_datetime_format($value, $depth - 1);
+          }
+        }
+    }
+  return $datetime;
+}
+
+/**
+ * parse datetime values from a string, array, or stdClass objet
+ * @param mix $datetime "yyyy-MM-ddThh:mm:ss" in GMT
+ */
+function mca_rest_datetime_parse($datetime, $depth = 1) {
+  if (is_string($datetime) ) {
+    return new DateTime($datetime, mca_rest_datetime_tz());
+  }
+  elseif ($depth > 0 ) {
+    if (is_array($datetime) ) {
+      foreach ( $datetime as $key => $value ) {
+        if (empty($value) ) continue;
+        $parse = FALSE;
+        if (is_string($value) ) {
+          $parse = strlen($value) == 19 && $value[10] == 'T' && $value[4] == '-' && $value[7] == '-';
+        }
+        elseif ($depth > 1 && (is_array($value) || is_object($value)) )
+          $parse = true;
+        if ($parse ) $datetime[$key] = mca_rest_datetime_parse($value, $depth - 1);
+      }
+    }
+    elseif (is_object($datetime) ) {
+      foreach ( get_object_vars($datetime) as $var => $value ) {
+        // $value = $datetime->{$var};
+        $parse = FALSE;
+        if (empty($value) ) continue;
+        if (is_string($value) ) {
+          $parse = strlen($value) == 19 && $value[10] == 'T' && $value[4] == '-' && $value[7] == '-';
+        }
+        elseif ($depth > 1 && (is_array($value) || is_object($value)) )
+          $parse = true;
+        if ($parse ) $datetime->{$var} = mca_rest_datetime_parse($value, $depth - 1);
+      }
+    }
+  }
+  return $datetime;
+}
+
+function mca_rest_menu() {
+	$items['admin/config/mca'] = array(
+    'title' => 'MCA',
+    'page callback' => 'system_admin_menu_block_page',
+    'access arguments' => array('access administration pages'),
+    'file path' => 'modules/system',
+    'file' => 'system.admin.inc',
+  );
+  $items['admin/config/mca/rest'] = array(
+    'title' => 'REST',
+    'description' => t('Configuration for REST request'),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('mca_rest_settings_form'),
+    'access arguments' => array('administer mca_rest'),
+    'file' => 'mca_rest.config.inc',
+  );
+  return $items;
+}
+
+function mca_rest_views_api() {
+  return array(
+    'api' => 3,
+    'path' => drupal_get_path('module', 'mca_rest') . '/includes/views',
+  );
+}
+
+
+function mca_rest_views_get_entity_types($view) {
+  $entity_types = array();
+  $infos = entity_get_info();
+  foreach ($infos as $entity_type => $info) {
+    if (empty($info['base table']) || $info['base table'] != $view->base_table) continue;
+    $entity_types[$entity_type] = $info['entity keys']['id'];
+    break;
+  }
+  return $entity_types;
+}
+
+/**
+ * hook_views_pre_execute
+ * @param view $view
+ */
+function mca_rest_views_query_alter(&$view, $query) {
+  // look for view with mca_rest_views_join_ref_field
+  if (empty($view->relationship)) return;
+  foreach ($view->relationship as $rel_name => $rel) {
+    $alias = $rel->alias;
+    if (empty($rel->definition['join_handler']) || !($rel->query->table_queue[$alias]['join'] instanceof mca_rest_views_join_ref_field))
+      continue;
+    
+    // check if data for that field has been added
+    $field = $rel_name.'_data';
+    if (!empty($view->field[$field])) continue;
+    
+    // new field (views_handler_field_field) to generate _field_data for each rows
+    $handler = new views_handler_field_field(); //views_get_plugin('field', 'views_handler_field_field'); // 
+    $view_entities = mca_rest_views_get_entity_types($view);
+    $entities = array_keys($view_entities);
+    $options = array(
+      'title' => t('View data query for @relationship', array('@relationship' => $rel_name)),
+      'id' => $field,
+      'table' => $rel->table,
+      'field' => $rel->real_field,
+      'field_name' => $rel->field,
+      'entity_tables' => array(
+        $view->base_table => reset($entities),
+      ),
+      'additional fields' => array(
+        $rel->definition['field'],
+      ),
+      'exclude' => TRUE,
+    );
+    $handler->set_definition($options);
+    $handler->construct();
+    $handler->init($view, $options);
+    $view->field[$field] = $handler;
+    $handler->ensure_my_table();
+    $handler->add_additional_fields();
+    $handler->set_relationship();
+    $handler->query($view->display_handler->use_group_by());
+    
+    $view->field;
+  }
+}
+
+/**
+ * hook_views_post_execute
+ */
+function mca_rest_views_post_execute(&$view) {
+  // search for fields with mca_rest_field && mca_rest_field
+  foreach ($view->field as $field) {
+    if (!empty($field->definition['mca_rest_field'])) {
+      // replace field alias
+      $field->field_alias = $field->definition['mca_rest_field'];
+    }
+    
+    if (!empty($field->definition['mca_rest_fields'])) {
+      // assign mca_rest_fields
+      foreach ($field->definition['mca_rest_fields'] as $name=>$alias) {
+        if (is_numeric($name)) $name = $alias;
+        $field->aliases[$name] = $alias;
+      }
+    }
+  }
+  
+  if (empty($view->relationship)) { 
+    // handle view without relationship
+  }
+  else {
+    // handle relationship of views and perform delayed join query (distributed join)
+    foreach ($view->relationship as $rel_name => $rel) {
+      // look for view with mca_rest_views_join_ref_field
+      $alias = $rel->alias;
+      if (empty($rel->definition['join_handler']) || empty($rel->query->table_queue[$alias]['join']) || 
+          !($rel->query->table_queue[$alias]['join'] instanceof mca_rest_views_join_ref_field))
+        continue;
+    
+      $join = $rel->query->table_queue[$alias]['join'];
+      $join->execute_join_query($view, $rel);
+    }
+  }
+}

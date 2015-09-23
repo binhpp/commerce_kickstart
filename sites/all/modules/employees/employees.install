@@ -1,0 +1,149 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: root
+ * Date: 31/08/2015
+ * Time: 18:04
+ */
+/**
+ * Implement hook_install()
+ */
+function employees_install() {
+    $types = array(
+        array(
+            'type' => 'mbv',
+            'label' => 'MBV',
+            'weight' => 0,
+            'description' => 'Default MBV.'
+        ),
+    );
+
+    foreach ($types as $type) {
+        $company_type = company_type_new();
+
+        $company_type->type = $type['type'];
+        $company_type->label = $type['label'];
+        $company_type->weight = $type['weight'];
+        $company_type->description = $type['description'];
+
+        company_type_save($company_type);
+    }
+}
+/**
+ * Implement hook_schema()
+ */
+function employees_schema() {
+    $schema = array();
+    $schema['employees'] = array(
+        'description' => 'The base table for employee.',
+        'fields' => array(
+            'eid' => array(
+                'description' => 'The primary identifier for the employee.',
+                'type' => 'serial',
+                'unsigned' => TRUE,
+                'not null' => TRUE,
+            ),
+            'type' => array(
+                'description' => 'The type (bundle) of this employee.',
+                'type' => 'varchar',
+                'length' => 255,
+                'not null' => TRUE,
+                'default' => '',
+            ),
+            'title' => array(
+                'description' => 'The title of the employee.',
+                'type' => 'varchar',
+                'length' => 255,
+                'not null' => TRUE,
+                'default' => '',
+            ),
+            'completed' => array(
+                'description' => 'Boolean indicating whether the employee has been completed.',
+                'type' => 'int',
+                'not null' => TRUE,
+                'default' => 0,
+            ),
+            'uid' => array(
+                'description' => 'ID of Drupal user creator.',
+                'type' => 'int',
+                'not null' => TRUE,
+            ),
+            'created' => array(
+                'description' => 'The Unix timestamp when the employee was created.',
+                'type' => 'int',
+                'not null' => TRUE,
+                'default' => 0,
+            ),
+            'changed' => array(
+                'description' => 'The Unix timestamp when the employee was most recently saved.',
+                'type' => 'int',
+                'not null' => TRUE,
+                'default' => 0,
+            ),
+            'description' => array(
+                'description' => 'employees description.',
+                'type' => 'text',
+            ),
+        ),
+        'primary key' => array('eid'),
+    );
+    $schema['company_type'] = array(
+        'description' => 'Stores information about all defined employee types.',
+        'fields' => array(
+                'id' => array(
+                    'type' => 'serial',
+                    'not null' => TRUE,
+                    'description' => 'Primary Key: Unique employee type ID.',
+                ),
+                'type' => array(
+                    'description' => 'The machine-readable name of this type.',
+                    'type' => 'varchar',
+                    'length' => 32,
+                    'not null' => TRUE,
+                ),
+                'label' => array(
+                    'description' => 'The human-readable name of this type.',
+                    'type' => 'varchar',
+                    'length' => 255,
+                    'not null' => TRUE,
+                    'default' => '',
+                ),
+                'description' => array(
+                    'description' => 'A brief description of this type.',
+                    'type' => 'text',
+                    'not null' => TRUE,
+                    'size' => 'medium',
+                    'translatable' => TRUE,
+                ),
+            ) + entity_exportable_schema_fields(),
+        'primary key' => array('id'),
+        'unique keys' => array(
+            'type' => array('type'),
+        ),
+    );
+    return $schema;
+}
+function employees_uninstall () {
+    //$instance =field_info_instance('employee','field_identity','mbv') ;
+    //field_delete_instance($instance);
+    //field_delete_field('field_identity');
+    $sql = "SELECT * FROM field_config_instance fci WHERE fci.entity_type='employees'";
+
+    $result = db_query($sql);
+
+    foreach ($result->fetchAll() as $key => $item) {
+        $field_name = $item->field_name;
+        $table_name = 'field_data_' . $field_name;
+        $sql = "DROP TABLE " . $table_name;
+
+        db_query($sql);
+        $sql = "DELETE FROM field_config_instance WHERE field_name='" . $field_name . "'";
+
+        db_query($sql);
+        $sql = "DROP TABLE field_revision_" . $field_name;
+
+        db_query($sql);
+        $sql = "DELETE FROM field_config WHERE field_name='" . $field_name . "'";
+        db_query($sql);
+    }
+}

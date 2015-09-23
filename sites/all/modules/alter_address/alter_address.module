@@ -1,0 +1,53 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: binh
+ * Date: 14/09/2015
+ * Time: 11:05
+ */
+
+/**
+ * Implements hook_menu()
+ */
+function alter_address_menu() {
+    $items['admin/config/customer'] = array(
+        'title' => 'Alter Postal Address',
+        'page callback' => 'system_admin_menu_block_page',
+        'access arguments' => array('access administration pages'),
+        'file' => 'system.admin.inc',
+        'file path' => drupal_get_path('module', 'system')
+    );
+    $items['admin/config/customer/city'] = array(
+        'title' => 'City',
+        'page callback' => 'drupal_get_form',
+        'page arguments' => array('alter_address_widget'),
+        'access arguments' => array('accsess administration pages'),
+        'file' => 'includes/alter_address_widget.config.inc'
+    );
+    $items['alter_address/auto_complete_callback'] = array(
+        'page callback' => 'alter_address_autocomplete_callback',
+        'file' => 'includes/alter_address_autocomplete.inc',
+        'type' => MENU_CALLBACK,
+        'access arguments' => array('access user profiles'),
+    );
+    return $items;
+}
+/**
+ * Implement hook_field_widget_form_alter()
+ */
+function alter_address_field_widget_form_alter(&$element, &$form_state, $context) {
+    if(!empty($element['#addressfield'])) {
+        $element['locality_block']['locality']['#autocomplete_path'] = 'alter_address/auto_complete_callback';
+        $element['locality_block']['locality']['#element_validate'] = array('alter_address_city_form_validate');
+    }
+}
+function alter_address_city_form_validate($element, &$form_state, $context) {
+    $city = variable_get('alter_postal_address_widget', array());
+    $results = explode("\r\n", $city);
+    foreach($results as $result) {
+        if($element['#value'] == $result){
+            return TRUE;
+        }
+    }
+    form_set_error('customer', t('Can not save customer, city invalid "%city".', array('%city' => $element['#value'])));
+}

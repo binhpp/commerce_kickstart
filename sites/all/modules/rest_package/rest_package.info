@@ -1,0 +1,13 @@
+name =  Rest Package
+description = This module package.
+package = @custom
+core = 7.x
+version = "7.x-0.1"
+project = "drupal"
+; Module includes
+files[] = includes/rest_package.controller.inc
+; Views includes
+files[] = includes/views/rest_package.views.inc
+files[] = includes/views/plugins/rest_package_views_plugin_query.inc
+files[] = includes/views/handlers/views_handler_field_rest_package.inc
+

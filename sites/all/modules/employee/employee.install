@@ -1,0 +1,199 @@
+<?php
+//function employee_enable () {
+//    if(!field_info_field('identity_card')){
+//        $field = array(
+//            'field_name' => 'identity_card',
+//            'type' => 'identity_card_info',
+//        );
+//        field_create_field($field);
+//
+//
+//        /**
+//         * Bind field to a entity bundle.
+//         */
+//        $instance = array(
+//            'field_name' => $field['field_name'],
+//            'entity_type' => 'employee',
+//            'bundle' => 'mbv',
+//            'widget' => array(
+//                'type' => 'identity_card_form',
+//            ),
+//        );
+//        field_create_instance($instance);
+//    }
+//}
+function employee_schema() {
+  $schema['employee'] = array(
+    'description' => 'The base table for employees.',
+    'fields' => array(
+      'eid' => array(
+        'description' => 'The primary identifier for an employee.',
+        'type' => 'serial',
+        'size' => 'big',
+        'not null' => TRUE),
+
+      'company' => array(
+        'description' => 'The bundle type name Employee',
+        'type' => 'text',
+        'size' => 'medium',
+        'not null' => TRUE),
+
+      'employee_id' => array(
+        'description' => 'The id of specific employee',
+        'type' => 'varchar',
+        'length' => 11,
+      ),
+
+      'full_name' => array(
+        'description' => 'Employee full name.',
+        'type' => 'varchar',
+        'length' => 255,
+        'default' => 'Anonymous'),
+
+      'day_of_birth' => array(
+        'description' => 'Employee birthday',
+        'default' => 0,
+        'type' => 'int'),
+
+      'gender' => array(
+        'description' => 'The employee gender',
+        'type' => 'int',
+        'default' => 0,
+        'size' => 'tiny'),
+
+      'created_date' => array(
+        'description' => 'The Unix timestamp when the node was created.',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0),
+      'uid' =>  array(
+          'description' => 'The creator id of this employee.',
+          'type' => 'int',
+          'size' => 'medium',
+          'not null' => TRUE,
+          'default' => 0),
+      'data' =>  array(
+        'description' => 'The data of a specific employee.',
+        'type' => 'blob',
+        'size' => 'normal'),
+        'data_1' =>  array(
+            'description' => 'The data of a specific employee.',
+            'type' => 'blob',
+            'size' => 'normal'),
+    ),
+    'primary key' => array('eid'),
+  );
+  return $schema;
+}
+
+function employee_update_7000 () {
+
+    db_add_field('employee', 'data', array(
+        'description' => 'The data of a specific employee.',
+        'type' => 'blob',
+        'size' => 'normal',
+    )) ;
+}
+function employee_update_7001 () {
+
+    db_add_field('employee', 'data_1', array(
+        'description' => 'The data of a specific employee.',
+        'type' => 'blob',
+        'size' => 'normal',
+    )) ;
+}function employee_update_7002 () {
+
+    db_add_field('employee', 'data_2', array(
+        'description' => 'The data of a specific employee.',
+        'type' => 'blob',
+        'size' => 'normal',
+    )) ;
+}
+function employee_install() {
+  $values = array(
+      array(
+        'company' => 'mbv',
+        'employee_id' => 'emp_1',
+        'full_name' => 'Phan Phuong Binh',
+        'day_of_birth' => 1338829200,
+        'gender' => 0 ,
+        'created_date' => 1434361273,
+        'uid' => 1,
+      ),
+      array(
+        'company' => 'mbv',
+        'employee_id' => 'emp_2',
+        'full_name' => 'Phan Phuong Nam',
+        'day_of_birth' => 1338829200,
+        'gender' => 0 ,
+        'created_date' => 1434361273,
+        'uid' => 1,
+      ),
+      array(
+        'company' => 'mbv',
+        'employee_id' => 'emp_3',
+        'full_name' => 'Phan Thi My My',
+        'day_of_birth' => 1338829200,
+        'gender' => 0 ,
+        'created_date' => 1434361273,
+        'uid' => 1,
+      ),
+      array(
+          'company' => 'mbv',
+          'employee_id' => 'emp_3',
+          'full_name' => 'Nguyen Van A',
+          'day_of_birth' => 1338829200,
+          'gender' => 0 ,
+          'created_date' => 1434361273,
+          'uid' => 2,
+      ),
+      array(
+          'company' => 'mbv',
+          'employee_id' => 'emp_3',
+          'full_name' => 'Nguyen Van B',
+          'day_of_birth' => 1338829200,
+          'gender' => 0 ,
+          'created_date' => 1434361273,
+          'uid' => 2,
+      ),
+      array(
+          'company' => 'mbv',
+          'employee_id' => 'emp_3',
+          'full_name' => 'Nguyen Van C',
+          'day_of_birth' => 1338829200,
+          'gender' => 0 ,
+          'created_date' => 1434361273,
+          'uid' => 2,
+      ),
+  );
+      $query = db_insert('employee')->fields(array('company', 'employee_id', 'full_name', 'day_of_birth', 'gender', 'created_date','uid',));
+      foreach ($values as $record) {
+            $query->values($record);
+      }
+      $query->execute();
+}
+function employee_uninstall () {
+     //$instance =field_info_instance('employee','field_identity','mbv') ;
+     //field_delete_instance($instance);
+     //field_delete_field('field_identity');
+    $sql = "SELECT * FROM field_config_instance fci WHERE fci.entity_type='employee'";
+
+    $result = db_query($sql);
+
+    foreach ($result->fetchAll() as $key => $item) {
+        $field_name = $item->field_name;
+        $table_name = 'field_data_' . $field_name;
+        if(isset($table_name)){
+            $sql = "DROP TABLE " . $table_name;
+            db_query($sql);
+        }
+        if(isset($field_name)){
+            $sql = "DELETE FROM field_config_instance WHERE field_name='" . $field_name . "'";
+            db_query($sql);
+            $sql = "DROP TABLE field_revision_" . $field_name;
+            db_query($sql);
+            $sql = "DELETE FROM field_config WHERE field_name='" . $field_name . "'";
+            db_query($sql);
+        }
+    }
+}

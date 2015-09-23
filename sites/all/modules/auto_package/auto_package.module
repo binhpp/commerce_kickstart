@@ -1,0 +1,46 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: root
+ * Date: 08/09/2015
+ * Time: 14:19
+ */
+/**
+ * Implements hook_menu()
+ */
+function auto_package_menu() {
+    $items['admin/config/auto-topup'] = array(
+        'title' => 'Auto Topup Package',
+        'page callback' => 'system_admin_menu_block_page',
+        'access arguments' => array('access administration pages'),
+        'file' => 'system.admin.inc',
+        'file path' => drupal_get_path('module', 'system')
+    );
+    $items['admin/config/auto-topup/connections'] = array(
+        'title' => t('Connections'),
+        'description' => t('Connection settings for Auto topup system access'),
+        'page callback' => 'drupal_get_form',
+        'page arguments' => array('auto_package_settings_form'),
+        'access arguments' => array('administer auto_package'),
+        'file' => 'includes/auto_package.config.inc',
+    );
+    return $items;
+}
+/**
+ * Implements hook_permission()
+ */
+function auto_package_permission() {
+    return array(
+        'administer auto_package' => array(
+            'title' => t('Administer autotopup'),
+            'description' => t('Administer autotopup'),
+            'restrict access' => TRUE,
+        )
+    );
+}
+function auto_package_views_api() {
+    return array(
+        'api' => 3,
+        'path' => drupal_get_path('module', 'auto_package') . '/includes/views',
+    );
+}

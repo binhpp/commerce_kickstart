@@ -1,0 +1,5 @@
+name = Indentity_Card
+description = "The Identity card of a specific employee"
+package = @custom
+core = 7.x
+files[] = identity.module

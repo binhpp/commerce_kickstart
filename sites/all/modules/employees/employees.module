@@ -1,0 +1,395 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: root
+ * Date: 31/08/2015
+ * Time: 18:05
+ */
+define('COMPANY_ASSIGNEE_FIELD', 'company_assignee');
+/**
+ * Implements hook_entity_info()
+ */
+function employees_entity_info() {
+    $includes = drupal_get_path('module','employees') . '/includes';
+    $return = array(
+        'employees' => array(
+            'label' => t('Employees'),
+            'entity class' => 'Employees',
+            'controller class' => 'EmployeesController',
+            'base table' => 'employees',
+            'fieldable' => TRUE,
+            'entity keys' => array(
+                'id' => 'eid',
+                'bundle' => 'type',
+            ),
+            'bundle keys' => array(
+                'bundle' => 'type',
+            ),
+            'bundles' => array(),
+            'load hook' => 'employees_load',
+            'view modes' => array(
+                'full' => array(
+                    'label' => t('Default'),
+                    'custom settings' => FALSE,
+                ),
+            ),
+            'label callback' => 'entity_class_label',
+            'uri callback' => 'entity_class_uri',
+            'module' => 'employees',
+            'access callback' => 'employees_access',
+        ),
+    );
+    $return['company_type'] = array(
+        'label' => t('Company Type'),
+        'entity class' => 'CompanyType',
+        'controller class' => 'CompanyTypeController',
+        'base table' => 'company_type',
+        'fieldable' => FALSE,
+        'bundle of' => 'employees',
+        'exportable' => TRUE,
+        'entity keys' => array(
+            'id' => 'id',
+            'name' => 'type',
+            'label' => 'label',
+        ),
+        'module' => 'employees',
+        // Enable the entity API's admin UI.
+
+        'admin ui' => array(
+            'path' => 'admin/structure/company-types',
+            'file' => 'employees.admin.inc',
+            'controller class' => 'CompanyTypeUIController',
+            'bundle argument' => 4,
+            'file path' => $includes,
+        ),
+        'access callback' => 'company_type_access',
+    );
+    return $return;
+}
+/**
+ * Implement hook_entity_info_alter()
+ */
+function employees_entity_info_alter(&$entity_info) {
+    $types = company_types();
+    foreach($types as $type => $info) {
+        $entity_info['employees']['bundles'][$type] = array(
+            'label' => $info->label,
+            'admin' => array(
+                'path' => 'admin/structure/company-types/manage/%company_type',
+                'real path' => 'admin/structure/company-types/manage/' . $type,
+                'bundle argument' => 4,
+            ),
+        );
+    }
+}
+function company_type_access($op, $entity = NULL) {
+    return user_access('administer company types');
+}
+function employees_access($op, $employees, $account = NULL, $entity_type = NULL) {
+    global $user;
+
+    if (!isset($account)) {
+        $account = $user;
+    }
+    switch ($op) {
+        case 'create':
+            return user_access('administer employees entities', $account)
+            || user_access('create employees entities', $account);
+        case 'view':
+            return user_access('administer employees entities', $account)
+            || user_access('view any employees entities', $account)
+            || (user_access('view own employees entities', $account) && ($employees->uid == $account->uid));
+        case 'edit':
+            return user_access('administer employees entities')
+            || user_access('edit any employees entities')
+            || (user_access('edit own employees entities') && ($employees->uid == $account->uid));
+//        case 'delete':
+//            return user_access('administer task entities')
+//            || user_access('delete any task entities')
+//            || (user_access('delete own task entities') && ($task->uid == $account->uid))
+//            || (user_access('delete assigned task entities') && ($task->uid == $account->uid));
+    }
+}
+/**
+ * Implements hook_permission().
+ */
+
+function employees_permission() {
+    $permissions = array(
+        'administer company types' => array(
+            'title' => t('Administer employees types'),
+            'description' => t('Allows users to configure employees types and their fields.'),
+            'restrict access' => TRUE,
+        ),
+        'administer employees entities' => array(
+            'title' => t('Administer employees'),
+            'description' => t('Allows users to administer all employees.'),
+            'restrict access' => TRUE,
+        ),
+        'create employees entities' => array(
+            'title' => t('Create tasks'),
+            'description' => t('Allows users to create tasks.'),
+        ),
+        'view any employees entities' => array(
+            'title' => t('View any employees'),
+            'description' => t('Allows users to view any employees.'),
+        ),
+        'view own employees entities' => array(
+            'title' => t('View own employees'),
+            'description' => t('Allows users to view own employees.'),
+        ),
+        'edit any employees entities' => array(
+            'title' => t('Edit any employees'),
+            'description' => t('Allows users to edit any employees.'),
+        ),
+        'edit own employees entities' => array(
+            'title' => t('Edit own employees'),
+            'description' => t('Allows users to edit own employees.'),
+        ),
+    );
+    return $permissions;
+}
+function employees_load($eid, $reset = FALSE) {
+    $employees = employees_load_multiple(array($eid), array(), $reset);
+    return reset($employees);
+}
+function employees_load_multiple($eids = array(), $conditions = array(), $reset = FALSE) {
+    return entity_load('employees', $eids, $conditions, $reset);
+}
+/**
+ * Load task Type.
+ */
+function company_type_load($company_type) {
+    return company_types($company_type);
+}
+
+/**
+ * List of task Types.
+ */
+function company_types($type_name = NULL) {
+    $types = entity_load_multiple_by_name('company_type', isset($type_name) ? array($type_name) : FALSE);
+    return isset($type_name) ? reset($types) : $types;
+}
+function company_type_delete(CompanyType $company_type) {
+    entity_delete('company_type', entity_id('company_type', $company_type));
+}
+/**
+ * Returns an initialized task type object.
+ */
+function company_type_new() {
+    return entity_create('company_type', array());
+}
+function company_type_save(CompanyType $company_type) {
+    if (!empty($company_type->is_new)) {
+        company_add_assignee_field($company_type);
+    }
+    entity_save('company_type', $company_type);
+}
+function employees_save(Employees $employees) {
+    entity_save('employees', $employees);
+}
+function employees_delete(Employees $employees) {
+    entity_delete('employees', entity_id('employees', $employees));
+}
+function company_add_assignee_field(CompanyType $type) {
+    $field = field_info_field(COMPANY_ASSIGNEE_FIELD);
+    $instance = field_info_instance('product', COMPANY_ASSIGNEE_FIELD, $type->type);
+
+    if (empty($field)) {
+        $field = array(
+            'field_name' => COMPANY_ASSIGNEE_FIELD,
+            'type' => 'entityreference',
+            'entity_types' => array('employees'),
+            'settings' => array(
+                'target_type' => 'user',
+                'handler' => 'base',
+                'handler_settings' => array(),
+            ),
+        );
+        $field = field_create_field($field);
+    }
+    if (empty($instance)) {
+        $instance = array(
+            'field_name' => COMPANY_ASSIGNEE_FIELD,
+            'entity_type' => 'employees',
+            'bundle' => $type->type,
+            'label' => 'Assignee',
+            'widget' => array('type' => 'entityreference_autocomplete', 'weight' => 50),
+            'settings' => array(),
+            'display' => array(
+                'default' => array(
+                    'label' => 'hidden',
+                    'type' => 'entityreference_label',
+                ),
+            ),
+        );
+        $instance = field_create_instance($instance);
+    }
+    return $instance;
+}
+
+
+/**
+ * Implement hook_menu()
+ */
+function employees_menu() {
+    $includes = drupal_get_path('module', 'employees') . '/includes';
+    $items = array();
+    $items['employees/add'] = array(
+        'title' => 'Add employee',
+        'page callback' => 'employees_admin_add_page',
+        'access arguments' => array('administer task entities'),
+        'file' => 'employees.admin.inc',
+        'file path' => $includes,
+    );
+    foreach (company_types() as $type => $info) {
+        $items['employees/add/' . $type] = array(
+            'title' => $info->label,
+            'page callback' => 'employees_add',
+            'page arguments' => array(2),
+            'access callback' => 'entity_access',
+            'access arguments' => array('create', 'employees', $type),
+            'file' => 'employees.admin.inc',
+            'file path' => $includes,
+        );
+    }
+    $items['employees/%employees'] = array(
+        'title callback' => 'entity_label',
+        'title arguments' => array('employees', 1),
+        'page callback' => 'employees_view',
+        'page arguments' => array(1),
+        'access callback' => 'entity_access',
+        'access arguments' => array('view', 'employees', 1),
+        'file' => 'employees.pages.inc',
+        'file path' => $includes,
+    );
+    $items['employees/%employees/view'] = array(
+        'title' => 'View',
+        'type' => MENU_DEFAULT_LOCAL_TASK,
+        'weight' => -10,
+    );
+    $items['employees/%employees/edit'] = array(
+        'title' => 'Edit',
+        'page callback' => 'drupal_get_form',
+        'page arguments' => array('employees_form', 1),
+        'access callback' => 'entity_access',
+        'access arguments' => array('edit', 'employees', 1),
+        'file' => 'employees.admin.inc',
+        'file path' => $includes,
+        'type' => MENU_LOCAL_TASK,
+        'context' => MENU_CONTEXT_PAGE | MENU_CONTEXT_INLINE,
+    );
+    $items['employees/%employees/delete'] = array(
+        'title' => 'Delete employees',
+        'page callback' => 'drupal_get_form',
+        'page arguments' => array('employees_delete_form', 1),
+        'access callback' => 'entity_access',
+        'access arguments' => array('edit', 'employees', 1),
+        'file' => 'employees.admin.inc',
+        'file path' => $includes,
+    );
+    $items['admin/structure/company-types/%company_type/delete'] = array(
+        'title' => 'Delete',
+        'page callback' => 'drupal_get_form',
+        'page arguments' => array('company_type_form_delete_confirm', 4),
+        'access arguments' => array('administer company types'),
+        'weight' => 1,
+        'type' => MENU_NORMAL_ITEM,
+        'file' => 'employees.admin.inc',
+        'file path' => $includes,
+    );
+    return $items;
+}
+/**
+ * Implements hook_field_extra_fields().
+ */
+function employees_field_extra_fields() {
+    $extra = array();
+
+    foreach (company_types() as $type) {
+        $extra['employees'][$type->type] = array(
+            'form' => array(
+                'title' => array(
+                    'label' => t('Title'),
+                    'description' => t('Employees module element'),
+                    'weight' => -5,
+                ),
+                'description' => array(
+                    'label' => t('Description'),
+                    'description' => t('Employees module element'),
+                    'weight' => 0,
+                ),
+                'completed' => array(
+                    'label' => t('Completed'),
+                    'description' => t('Employees module element'),
+                    'weight' => 5,
+                ),
+            ),
+            'display' => array(
+                'description' => array(
+                    'label' => t('Description'),
+                    'description' => t('Employees module element'),
+                    'weight' => 0,
+                ),
+                'completed' => array(
+                    'label' => t('Completed'),
+                    'description' => t('Employees module element'),
+                    'weight' => 5,
+                ),
+            ),
+        );
+    }
+    return $extra;
+}
+/**
+ * Implements hook_entity_property_info_alter().
+ */
+function employees_entity_property_info_alter(&$info) {
+    $properties = &$info['employees']['properties'];
+
+    $properties['completed'] = array(
+        'label' => t("Completed"),
+        'type' => 'boolean',
+        'description' => t("Whether the employees has been completed"),
+        //'getter callback' => 'task_entity_metadata_task_get_properties',
+        'schema field' => 'completed',
+    );
+    $properties['created'] = array(
+        'label' => t("Date created"),
+        'type' => 'date',
+        'description' => t("The date the node was posted."),
+        'setter callback' => 'entity_property_verbatim_set',
+        'setter permission' => 'administer nodes',
+        'schema field' => 'created',
+    );
+    $properties['changed'] = array(
+        'label' => t("Date changed"),
+        'type' => 'date',
+        'schema field' => 'changed',
+        'description' => t("The date the node was most recently updated."),
+    );
+    $properties['uid'] = array(
+        'label' => t("Author"),
+        'type' => 'user',
+        'description' => t("The author of the employees."),
+        'setter callback' => 'entity_property_verbatim_set',
+        'setter permission' => 'administer task entities',
+        'required' => TRUE,
+        'schema field' => 'uid',
+    );
+//    $properties['edit_url'] = array(
+//        'label' => t("Edit URL"),
+//        'description' => t("The URL of the task's edit page."),
+//        'getter callback' => 'task_entity_metadata_task_get_properties',
+//        'type' => 'uri',
+//    );
+}
+/**
+ * Implement hook_views_api()
+ */
+function employees_views_api() {
+    return array(
+        'api' => 3,
+        'path' => drupal_get_path('module', 'employees') . 'includes/views',
+    );
+}

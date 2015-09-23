@@ -1,0 +1,4 @@
+name = Topup Package VBO
+description = Provides a way of selecting multiple rows and applying operations to them.
+core = 7.x
+package = @custom

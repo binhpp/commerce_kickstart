@@ -1,0 +1,15 @@
+name = Rest Provides
+description = The module provides rest
+core = 7.x
+package = @custom
+
+dependencies[] = entity
+dependencies[] = views
+dependencies[] = mca_rest
+dependencies[] = mca_user
+
+version=7.x-0.1-dev
+
+files[] = includes/views/plugins/rest_provides_views_plugins_query.inc
+files[] = includes/views/handlers/rest_provides_handler_field_meta.inc
+files[] = includes/rest_provides.remote.inc

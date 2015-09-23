@@ -1,0 +1,457 @@
+<?php
+
+function employee_help($path, $arg) {
+    switch($path) {
+        case "admin/help#employee":
+            return '<p>' . t("Employee management system") . '</p>';
+            break;
+    }
+}
+/*
+ * Implement hook_entity_info
+ */
+function employee_entity_info () {
+    return array(
+        'employee' => array(
+            'label' => t('Employee'),
+            'plural label' => t('Employees'),
+            'entity class' => 'Employee',
+            'controller class' => 'EmployeeController',
+            'base table' => 'employee',
+            'entity keys' => array(
+                'id' => 'eid',
+                'bundle' => 'company',
+                'label' => 'full_name'
+            ),
+            'fieldable' => TRUE,
+            'bundle keys' => array(
+                'bundle' => 'company',
+            ),
+            'bundles' => array(
+                'mbv' => array(
+                    'label' => 'MBV',
+                    'admin' => array(
+                        'path' => 'admin/structure/employee/mbv/manage',
+                        'access arguments' => array('administer employee module')
+                    ),
+                ),
+                'tcb' => array(
+                    'label' => 'TCB',
+                    'admin' => array(
+                        'path' => 'admin/structure/employee/tcb/manage',
+                        'access arguments' => array('administer employee module')
+                    ),
+                ),
+            ),
+            'load hook' => 'employee_load',
+            'view modes' => array(
+                'full' => array(
+                    'label' => t('Full'),
+                    'custom settings' => FALSE,
+                ),
+                'summary' => array(
+                    'label' => t('Summary'),
+                    'custom settings' => FALSE,
+                ),
+            ),
+            // Use the default label() and uri() functions
+            'label callback' => 'employee_label_generate',
+            'uri callback' => 'entity_class_uri',
+            'module' => 'employee',
+            'access callback' => 'employee_access',
+//      'access callback' => TRUE,
+        ),
+    );
+}
+class EmployeeController extends EntityAPIController
+{
+    /**
+     * Create and return a new employee entity.
+     */
+    public function create(array $values = array())
+    {
+        global $user;
+        $values = array_merge($values, array(
+            'eid' => 0,
+            'employee_id' => '',
+            'full_name' => 'Anonymous',
+            'day_of_birth' => 0,
+            'gender' => REQUEST_TIME,
+            'created_date' => REQUEST_TIME,
+            'uid' => $user->uid,
+        ));
+        return parent::create($values);
+    }
+}
+/**
+ * employee class.
+ */
+class Employee extends Entity {
+    protected function defaultLabel() {
+        return $this->full_name;
+    }
+
+    protected function defaultUri() {
+        return array('path' => 'employee/' . $this->identifier());
+    }
+}
+/**
+ * Implement hook_menu()
+ */
+function employee_menu() {
+    $items['employee/list'] = array(
+        'title' => 'All employees',
+        'page callback' => 'employee_list',
+        'access callback' => TRUE,
+        'description' => 'View all employees',
+        'file' => 'employee_form_inclusion.inc',
+    );
+    $items['employee/list/uid2'] = array(
+        'title' => 'All employees are create by uid equal 2',
+        'page callback' => 'employee_list_uid2',
+        'access callback' => TRUE,
+        'description' => 'View all employees',
+        'file' => 'employee_form_inclusion.inc',
+    );
+    $items['employee/add'] = array(
+        'title' => 'Add new employee',
+        'page callback' => 'employee_add',
+        'page arguments' => array('mbv'),
+        //'access callback' => TRUE,
+        'access arguments' => array('add mbv employee'),
+        'description' => 'Employee add form information',
+        'type' => MENU_LOCAL_TASK,
+        'file' => 'employee_form_inclusion.inc',
+    );
+    $items['employee/my-employees'] = array(
+        'title' => 'List of logged in employees',
+        'page callback' => 'employee_current_user_view',
+        'access callback' => TRUE,
+        'description' => 'Employee add form information',
+        'type' => MENU_LOCAL_TASK,
+        'file' => 'employee_form_inclusion.inc',
+    );
+    $items['admin/structure/employee/mbv/manage'] = array(
+        'title' => 'Administer mbv employee entity type',
+        'page callback' => 'employee_list_entities',
+        'page arguments' => array('mbv'),
+//    'access arguments' => true,
+        'access arguments' => array('administer employee module'),
+        'file' => 'employee_form_inclusion.inc',
+    );
+    $items['admin/structure/employee/mbv/manage/list'] = array(
+        'title' => 'List',
+        'type' => MENU_DEFAULT_LOCAL_TASK,
+    );
+    $items['admin/structure/employee/mbv/manage/add'] = array(
+        'title' => 'Add an employee Entity',
+        'page callback' => 'employee_add',
+        'page arguments' => array('mbv'),
+        'access arguments' => array('administer employee module'),
+        'type' => MENU_LOCAL_ACTION,
+        'file' => 'employee_form_inclusion.inc',
+    );
+    $items['admin/structure/employee/tcb/manage'] = array(
+        'title' => 'Administer tcb employee entity type',
+        'page callback' => 'employee_list_entities',
+        'page arguments' => array('tcb'),
+//    'access arguments' => true,
+        'access arguments' => array('administer employee module'),
+        'file' => 'employee_form_inclusion.inc',
+    );
+    $items['admin/structure/employee/tcb/manage/list'] = array(
+        'title' => 'List',
+        'type' => MENU_DEFAULT_LOCAL_TASK,
+    );
+    $items['admin/structure/employee/tcb/manage/add'] = array(
+        'title' => 'Add an employee Entity',
+        'page callback' => 'employee_add',
+        'page arguments' => array('tcb'),
+        'access arguments' => array('administer employee module'),
+        'type' => MENU_LOCAL_ACTION,
+        'file' => 'employee_form_inclusion.inc',
+    );
+    $items['admin/config/content/employee'] = array(
+        'title' => 'Employee',
+        'description' => 'Configuration for Employee module',
+        'page callback' => 'drupal_get_form',
+        'page arguments' => array('employee_administration_form'),
+        'access arguments' => array('access administration pages'),
+        'file' => 'employee_form_inclusion.inc',
+        'type' => MENU_NORMAL_ITEM,
+    );
+    $items['employee/%employee'] = array(
+        'title callback' => 'entity_employee_view',
+        'title arguments' => array(1),
+        'page callback' => 'employee_view',
+        'page arguments' => array(1),
+        'access callback' => 'entity_access',
+        'access arguments' => array('view', 'employee', 1),
+        'file' => 'employee_form_inclusion.inc',
+    );
+    $items['employee/%employee/view'] = array(
+        'title' => 'View',
+        'type' => MENU_DEFAULT_LOCAL_TASK,
+        'weight' => -10,
+    );
+    $items['employee/%employee/edit'] = array(
+        'title' => 'Edit',
+        'page callback' => 'drupal_get_form',
+        'page arguments' => array('employee_form', 1),
+        'access callback' => 'entity_access',
+        'access arguments' => array('edit', 'employee', 1),
+        'type' => MENU_LOCAL_TASK,
+        'file' => 'employee_form_inclusion.inc',
+    );
+//    $items['employee/cron'] = array(
+//        'title' => 'Cron Employee',
+//        'page callback' => 'drupal_get_form',
+//        'page arguments' => array('cron_employee_form'),
+//        'access callback' => TRUE,
+//    );
+    return $items;
+}
+function employee_load_multiple($eids = FALSE, $conditions = array(), $reset = FALSE) {
+   return entity_load('employee', $eids, $conditions, $reset);
+}
+
+function employee_load($eid = NULL, $reset = FALSE) {
+    $eid = (isset($eid) ? array($eid) : array());
+    $employee = entity_load('employee', $eid, array(), $reset);
+    return $employee ? reset($employee) : FALSE;
+}
+/*
+ * Implement hook_access()
+ */
+function employee_access($op, $emp, $account = NULL, $entity_type = NULL) {
+    global $user;
+
+    if (!isset($account)) {
+        $account = $user;
+    }
+    switch ($op) {
+        case 'create':
+            return user_access('administer employee module', $account)
+            || user_access('add mbv employee', $account);
+        case 'view':
+            return user_access('administer employee module', $account)
+            || user_access('view mbv employee', $account);
+        case 'edit':
+            return user_access('administer employee module')
+            || user_access('edit mbv employee')
+            || (user_access('edit own mbv employee') && ($emp->uid == $account->uid));
+    }
+}
+/*
+ * Implement hook_permission
+ */
+function employee_permission() {
+    $permissions = array(
+        'administer employee module' => array(
+            'title' => t('Administer employee module'),
+        ),
+        'add mbv employee' => array(
+            'title' => t('Add MBV employee'),
+        ),
+        'view mbv employee' => array(
+            'title' => t('View mbv employee'),
+        ),
+        'edit mbv employee' => array(
+            'title' => t('Edit mbv employee'),
+        ),
+        'edit own mbv employee' => array(
+            'title' => t('Edit own mbv employee'),
+        ),
+    );
+    return $permissions;
+}
+function employee_theme() {
+    $theme = array();
+    $theme['employee_template_full'] = array(
+        // Define variables you wish to pass on.
+        'variables' => array(
+            'url' => NULL,
+            'text' => NULL,
+            'item' => NULL ,
+        ),
+        // tpl.php file name with or without directory, don't forget to use dashes.
+        'template'  => 'templates/custom_full',
+    );
+
+    return $theme;
+}
+
+function employee_view($entity, $view_mode = 'full') {
+    $wrapper = entity_metadata_wrapper('employee', $entity);
+    //Our entity type, for convenience.
+
+    $entity_type = 'employee';
+
+    //Start setting up the content.
+    $entity->content = array(
+        '#view_mode' => $view_mode,
+    );
+
+    field_attach_prepare_view($entity_type, array($entity->eid => $entity),
+        $view_mode);
+    //We call entity_prepare_view() so it can invoke hook_entity_prepare_view()
+    //for us.
+    entity_prepare_view($entity_type, array($entity->eid => $entity));
+    //Now field_attach_view() generates the content for the fields.
+    $entity->content += field_attach_view($entity_type, $entity, $view_mode);
+
+    //OK, Field API done, now we can set up some of our own data.
+    $entity->content['created_date'] = array(
+        '#type' => 'item',
+        '#title' => t('Created date'),
+        '#markup' => format_date($entity->created_date),
+    );
+
+    $entity->content['employee_id'] = array(
+        '#type' => 'item',
+        '#title' => t('Employee ID'),
+        '#markup' => $entity->employee_id,
+    );
+
+    $entity->content['full_name'] = array(
+        '#type' => 'item',
+        '#title' => t('Full Name'),
+        '#markup' => $entity->full_name,
+    );
+
+//    $entity->content['uid'] = array(
+//        '#type' => 'item',
+//        '#title' => t('Creator'),
+//        '#markup' => $wrapper->uid->name->value(),
+//    );
+
+
+    // Now to invoke some hooks. We need the language code for
+    // hook_entity_view(), so let's get that.
+    global $language;
+    $langcode = $language->language;
+    // And now invoke hook_entity_view().
+    module_invoke_all('entity_view', $entity, $entity_type, $view_mode,
+        $langcode);
+    // Now invoke hook_entity_view_alter().
+    drupal_alter(array('employee_view', 'entity_view'),
+        $entity->content, $entity_type);
+
+    // And finally return the content.
+    return $entity->content;
+}
+
+/**
+ * Implements hook_field_extra_fields().
+ */
+function employee_field_extra_fields() {
+    $form_elements['full_name'] = array(
+        'label' => t('Full Name'),
+        'description' => t('Employee Full Name (an extra form field)'),
+        'weight' => -5,
+    );
+
+    $form_elements['employee_id'] = array(
+        'label' => t('Employee Id'),
+        'description' => t('Employee ID (an extra form field)'),
+        'weight' => -5,
+    );
+    $form_elements['day_of_birth'] = array(
+        'label' => t('Birthday'),
+        'description' => t('Birthday (an extra form field)'),
+        'weight' => -5,
+    );
+    $display_elements['employee_id'] = array(
+        'label' => t('Employee ID'),
+        'description' => t('Employee ID (an extra display field)'),
+        'weight' => 0,
+    );
+    $display_elements['day_of_birth'] = array(
+        'label' => t('Day Of Birth'),
+        'description' => t('Day Of Birth displaying (an extra display field)'),
+        'weight' => 0,
+    );
+
+    // Since we have only one bundle type, we'll just provide the extra_fields
+    // for it here.
+    $extra_fields['employee']['mbv']['form'] = $form_elements;
+    $extra_fields['employee']['mbv']['display'] = $display_elements;
+
+    return $extra_fields;
+}
+function employee_label_generate($entity, $entity_type)
+{
+    return isset($entity) ? $entity->full_name . ' - ' . $entity->employee_id . ' - '. format_date($entity->created_date) : 'Employee Object';
+}
+/**
+ * Implement hook_views_api()
+ */
+function employee_views_api() {
+    return array(
+        'api' => 3,
+        'path' => drupal_get_path('module', 'employee') . '/views',
+        'template path' => drupal_get_path('module', 'employee') . '/templates',
+    );
+}
+
+/**
+ * implement hook_cron()
+ */
+function employee_cron() {
+    $result = db_query("SELECT * FROM employee where employee_id=''");
+    $queue = DrupalQueue::get('employee_queue');
+    foreach ($result as $feed) {
+        $queue->createItem($feed);
+    }
+}
+
+/**
+ * Implement hook_cron_queue_info
+ */
+function employee_cron_queue_info() {
+    $queues['employee_queue'] = array(
+        'worker callback' => 'employee_queue_worker',
+        'time' => 1,
+    );
+    return $queues;
+}
+
+//function employee_queue_worker($item) {
+//    employee_queue_report_worker($item);
+//}
+function employee_queue_worker($item) {
+    watchdog('cron_employee', 'Queue worker processed item with sequence full_name = @sequence created at @time',
+        array(
+            '@sequence' => $item->full_name,
+            '@time' => date_iso8601($item->created),
+        )
+    );
+}
+/*
+ * Implements hook_cron().
+ */
+//function employee_cron() {
+//    $result = db_query('SELECT title,nid FROM {node}');
+//    $queue = DrupalQueue::get('send_emails');
+//    foreach ($result as $hf_info) {
+//        $queue->createItem($hf_info);
+//    }
+//}
+//
+///*
+// * Implements hook_cron_queue_info().
+// */
+//function employee_cron_queue_info() {
+//    $queues['send_emails'] = array(
+//        'worker callback' => 'employee_run_cron',
+//        'time' => 120,
+//    );
+//    return $queues;
+//}
+//function employee_run_cron($data) {
+//    $result = db_update('node')
+//        ->fields(array('title' => $data->title .' '. 'abc'))
+//        ->condition('nid', $data->nid)
+//        ->execute();
+//    return $result;
+//}
