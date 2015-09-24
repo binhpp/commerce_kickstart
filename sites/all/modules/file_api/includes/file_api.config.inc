@@ -15,3 +15,12 @@ function file_api_admin_setting($form, &$form_state) {
     );
     return system_settings_form($form);
 }
+function file_api_admin_config_uri() {
+    $form['config_uri'] = array(
+        '#type' => 'textfield',
+        '#title' => 'Saving Uri',
+        '#description' => 'Input uri amazons3',
+        '#default_value' => variable_get('config_uri', ''),
+    );
+    return system_settings_form($form);
+}

@@ -5,6 +5,9 @@
  * Date: 23/09/2015
  * Time: 16:12
  */
+
+use Aws\S3\S3Client;
+
 /**
  * Implement hook_menu()
  */
@@ -34,6 +37,28 @@ function file_api_menu() {
         'page arguments' => array('file_api_admin_setting'),
         'access arguments' => array('accsess administration pages'),
         'file' => 'includes/file_api.config.inc'
+    );
+    $items['admin/config/file_api/config_uri_s3'] = array(
+        'title' => 'Config Amazons3 Uri',
+        'description' => 'Setting uri',
+        'page callback' => 'drupal_get_form',
+        'page arguments' => array('file_api_admin_config_uri'),
+        'access arguments' => array('accsess administration pages'),
+        'file' => 'includes/file_api.config.inc'
+    );
+    $items['file_api_downlown_page/%'] = array(
+        'title' => 'Downloading',
+        'page callback' => 'download_file',
+        'page arguments' => array(1),
+        'access callback' => TRUE,
+        'type' => MENU_CALLBACK,
+    );
+    $items['file_api_delete_page/%'] = array(
+        'title' => 'Delete file',
+        'page callback' => 'file_api_delete_file',
+        'page arguments' => array(1),
+        'access callback' => TRUE,
+        'type' => MENU_CALLBACK,
     );
     return $items;
 }
@@ -90,6 +115,17 @@ function file_api_form($form, $form_state) {
     if(is_dir($directory)) {
         if(variable_get('saving_file_location', 'Local') == 'Local') {
             $files = file_scan_directory($directory, '/.*\.*$/', array('recurse' => FALSE));
+        } else {
+            $s3Client = S3Client::factory(array('key' => 'AKIAJ2IMA4N6YXL4I65A', 'secret' => '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'));
+            $prefix = !empty($form_state['input']['input_url']) ? variable_get('config_uri', '') . $form_state['input']['input_url'] : variable_get('config_uri', '');
+            $response = $s3Client->listObjects(array('Bucket' => variable_get('amazons3_bucket', ''), 'MaxKeys' => 1000, 'Prefix' => $prefix));
+            $result = $response->getPath('Contents');
+            $files = array();
+            foreach ($result as $file) {
+                $file_tmp = new stdClass();
+                $file_tmp->filename = basename($file['Key']);
+                $files['s3://' . variable_get('amazons3_bucket', '') . '/' . $file['Key']] = $file_tmp;
+            }
         }
     }
     $options = array();
@@ -115,4 +151,64 @@ function file_api_views_api() {
         'api' => 3,
         'path' => drupal_get_path('module', 'file_api') . '/includes/views',
     );
+}
+
+function download_file($uri) {
+    $path = hex2bin($uri);
+    if(is_file($path)){
+        DownloadFile($path);
+    }
+}
+
+function DownloadFile($file) { // $file = include path
+    if(file_exists($file)) {
+        $header = array(
+            'Content-Description' => 'File Transfer',
+            'Content-Type' => 'application/octet-stream',
+            'Content-Disposition' => 'attachment; filename='.basename($file),
+            'Content-Transfer-Encoding' => 'binary',
+            'Expires' => '0',
+            'Cache-Control' => 'must-revalidate, post-check=0, pre-check=0',
+            'Pragma' => 'public',
+            'Content-Length' => filesize($file),
+        );
+        file_transfer($file, $header);
+    }
+}
+
+function file_api_delete_file($uri) {
+    $path = hex2bin($uri);
+    if(is_file($path)){
+        $file = get_file_delete($path);
+        if($file != FALSE){
+            if(variable_get('saving_file_location', 'Local') == 'Local'){
+                file_delete($file);
+            } else {
+                $s3Client = S3Client::factory(array('key' => 'AKIAJ2IMA4N6YXL4I65A', 'secret' => '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'));
+                $response = $s3Client->deleteObject(array('Bucket' => variable_get('amazons3_bucket', ''), 'Key' => substr($path, strlen('s3://' . variable_get('amazons3_bucket', '') . '/')), 'Prefix' => variable_get('config_uri', '')));
+                $sql = "DELETE FROM file_managed WHERE uri = '" . $path . "'";
+                $result = db_query($sql);
+            }
+            drupal_set_message(t('File @filename has been deleted', array('@filename' => $file->filename)));
+        }
+        drupal_goto('file_api');
+    }
+}
+
+function get_file_delete($path) {
+    $sql = "SELECT * FROM file_managed WHERE uri = '" . $path . "'";
+    $result_temp = db_query($sql);
+
+    foreach ($result_temp->fetchAll() as $key => $file) {
+        return $file;
+    }
+
+    return FALSE;
+}
+
+function upload_file_submit() {
+
+}
+function ajax_auto_generate_table_content_options($form, &$form_state) {
+    return $form['field_table_set'];
 }
