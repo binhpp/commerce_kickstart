@@ -51,7 +51,7 @@ function topup_package_views_data() {
         'title' => t('Name'),
         'help' => t('The name of this package'),
         'field' => array(
-            'handler' => 'views_handler_field',
+            'handler' => 'topup_package_views_handler_field_name',
             'click sortable' => TRUE,
         ),
         'sort' => array(
@@ -81,6 +81,7 @@ function topup_package_views_data() {
         'sort' => array(
             'handler' => 'views_handler_sort',
         ),
+
     );
 
     $data['topup_package']['telco'] = array(
@@ -116,6 +117,9 @@ function topup_package_views_data() {
         'field' => array(
             'handler' => 'views_handler_field',
             'click sortable' => TRUE,
+        ),
+        'filter' => array(
+            'handler' => 'topup_package_views_handler_filter_status',
         ),
         'sort' => array(
             'handler' => 'views_handler_sort',

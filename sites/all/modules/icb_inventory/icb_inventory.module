@@ -1,0 +1,183 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: binh
+ * Date: 24/09/2015
+ * Time: 14:36
+ */
+
+/**
+ * Implement hook_menu()
+ */
+function icb_inventory_menu() {
+    $items['admin/structure/icb-inventory'] = array(
+        'title' => 'iCare Inventory B',
+        'description' => 'field and display settings for iCare inventory',
+        'page callback' => 'drupal_goto',
+        'page arguments' => array('admin/structure/icb-inventory/fields'),
+        'access arguments' => array('icb_inventory_admin'),
+    );
+    $items['icb-inventory/add'] = array(
+        'title' => t('Create inventory'),
+        'description' => t('Add new inventory'),
+        'page callback' => 'drupal_get_form',
+        'page arguments' => array('icb_inventory_form', entity_create('icb_inventory',array())),
+        'file' => 'includes/icb_inventory.admin.inc',
+        'access arguments' => array('icb_inventory_create'),
+        'type' => MENU_LOCAL_ACTION,
+    );
+    $items['icb-inventory/%icb_inventory'] = array(
+        'title' => t('Edit inventory'),
+        'description' => t('Edit inventory'),
+        'page callback' => 'drupal_get_form',
+        'page arguments' => array('icb_inventory_form', 1),
+        'file' => 'includes/icb_inventory.admin.inc',
+        'access arguments' => array('icb_inventory_edit'),
+    );
+    return $items;
+}
+
+/**
+ * Implements hook_permission().
+ */
+function icb_inventory_permission() {
+    $perms['icb_inventory_admin'] = array(
+        'title' => t('Administer inventory module'),
+        'description' => t('Manage settings about inventory types')  ,
+    );
+
+    $perms['icb_inventory_create'] = array(
+        'title' => t('Create inventory'),
+        'description' => t('Add new inventory'),
+    );
+
+    $perms['icb_inventory_view'] = array(
+        'title' => t('View inventory details'),
+        'description' => t('Search and view inventory')  ,
+    );
+
+    $perms['icb_inventory_edit'] = array(
+        'title' => t('Edit inventory information'),
+        'description' => t('Modify information of existing inventories')  ,
+    );
+    return $perms;
+}
+
+/**
+ * Implement hook_entity_info()
+ */
+function icb_inventory_entity_info() {
+    $info['icb_inventory'] = array(
+        'label' => t('Inventory'),
+        'controller class' => 'ICBInventoryController',
+        'base table' => 'icb_inventory',
+        'fieldable' => TRUE,
+        'entity keys' => array(
+            'label' => 'id',
+            'id' => 'id',
+        ),
+        'static cache' => TRUE,
+    );
+    $info['icb_inventory']['bundles']['icb_inventory'] = array(
+        'label' => 'icb_inventory',
+        'admin' => array(
+            'path' => 'admin/structure/icb-inventory',
+            'access arguments' => array('icb_inventory_admin'),
+        ),
+    );
+    return $info;
+}
+
+/**
+ * Implements hook_field_extra_fields().
+ */
+function icb_inventory_field_extra_fields() {
+    $elements = array();
+
+    $elements['name'] = array(
+        'label' => t('Inventory name'),
+        'description' => t('Inventory name'),
+        'weight' => -4,
+    );
+
+    $elements['code'] = array(
+        'label' => t('Inventory code'),
+        'description' => t('Inventory code'),
+        'weight' => -3,
+    );
+
+    $elements['note'] = array(
+        'label' => t('Inventory note'),
+        'description' => t('Inventory note'),
+        'weight' => -2,
+    );
+
+    $elements['status'] = array(
+        'label' => t('Inventory status'),
+        'description' => t('Inventory status'),
+        'weight' => -1,
+    );
+
+    $extra_fields = array();
+    $extra_fields['icb_inventory']['icb_inventory']['form'] = $elements;
+    $extra_fields['icb_inventory']['icb_inventory']['display'] = $elements;
+    return $extra_fields;
+}
+
+function icb_inventory_status_options() {
+    return array(
+        'active' => t('Active'),
+        'inactive' => t('Inactive'),
+    );
+}
+
+function icb_inventory_list() {
+    $list = array();
+    if ($cache = cache_get('icb_inventory_list')) {
+        $list = $cache->data;
+    }
+    if (empty($list)) {
+        $query = db_select('icb_inventory')->fields('icb_inventory', array(
+            'id',
+            'code',
+            'name'
+        ))->range(0, 50);
+        $result = $query->execute()->fetchAllAssoc('id');
+        $list = array();
+        foreach ($result as $id => $record) {
+            $list[$id] = $record->code . ' - ' . $record->name;
+        }
+        cache_set('icb_inventory_list', $list, 'cache', REQUEST_TIME + 60*60*24);
+    }
+    return $list;
+}
+function icb_inventory_save($entity) {
+    entity_save('icb_inventory',$entity);
+    cache_clear_all('icb_inventory_list', 'cache');
+}
+
+/**
+* function icb_inventory_load($id, $reset = FALSE)
+*/
+function icb_inventory_load($id, $reset = FALSE){
+    $ids = (isset($id) ? array($id) : array());
+    $inventory = icb_inventory_load_multiple($ids, array(), $reset);
+    return $inventory ? reset($inventory) : FALSE;
+}
+
+/**
+ * function icb_inventory_package_load_multiple($ids = FALSE, $conditions = array(), $reset = FALSE)
+ */
+function icb_inventory_load_multiple($ids = FALSE, $conditions = array(), $reset = FALSE){
+    return entity_load('icb_inventory',$ids, $conditions, $reset);
+}
+
+/**
+ * Implement hook_views_api()
+ */
+function icb_inventory_views_api() {
+    return array (
+        'api' => 3,
+        'path' => drupal_get_path ( 'module', 'icb_inventory' ) . '/includes/views'
+    );
+}

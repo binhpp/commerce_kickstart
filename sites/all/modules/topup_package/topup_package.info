@@ -9,6 +9,8 @@ files[] = includes/topup_package.controller.inc
 ; Views includes
 files[] = includes/views/topup_package.views.inc
 files[] = includes/views/topup_package.views_default.inc
+files[] = includes/views/handlers/topup_package_views_handler_field_name.inc
 files[] = includes/views/handlers/views_handler_field_topup_package.inc
 files[] = includes/views/handlers/views_handler_filter_topup_package.inc
 files[] = includes/views/plugins/topup_package_views_plugin_query.inc
+files[] = includes/views/handlers/topup_package_views_handler_filter_status.inc

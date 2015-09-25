@@ -336,6 +336,12 @@ function ajax_auto_generate_options($form, $form_state) {
 //  $form_state['rebuild'] = TRUE;
     return $form['field_code'];
 }
+function topup_package_status_options() {
+    return array(
+        'enabled' => t('Enabled'),
+        'disabled' => t('Disabled'),
+    );
+}
 /**
  * Implements hook_entity_info().
  */

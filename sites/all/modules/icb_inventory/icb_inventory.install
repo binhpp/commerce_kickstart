@@ -1,0 +1,166 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: binh
+ * Date: 24/09/2015
+ * Time: 14:36
+ */
+function icb_inventory_schema()
+{
+    $schema ['icb_inventory'] = array(
+        'description' => t('Icare Inventory'),
+        'fields' => array(
+            'id' => array(
+                'description' => t('id'),
+                'type' => 'serial',
+                'unsigned' => TRUE,
+                'not null' => TRUE
+            ),
+            'code' => array(
+                'description' => t('Inventory Id'),
+                'type' => 'varchar',
+                'length' => 32,
+                'not null' => TRUE
+            ),
+            'name' => array(
+                'description' => t('Inventory Name'),
+                'type' => 'varchar',
+                'length' => 45,
+                'not null' => TRUE
+            ),
+            'note' => array(
+                'description' => t('Note'),
+                'type' => 'text',
+                'size' => 'medium'
+            ),
+            'status' => array(
+                'description' => t('Inventory Status'),
+                'type' => 'varchar',
+                'length' => 32
+            ),
+            'created_by' => array(
+                'description' => 'This is the user that created inventory package.',
+                'type' => 'int',
+                'not null' => TRUE,
+            ),
+            'created_at' => array(
+                'description' => 'The Unix timestamp when inventory package was created.',
+                'type' => 'int',
+                'not null' => TRUE,
+            ),
+            'updated_by' => array(
+                'description' => t('User update inventory'),
+                'type' => 'int'
+            ),
+            'updated_at' => array(
+                'description' => t('Time update inventory'),
+                'type' => 'int'
+            ),
+            'data' => array(
+                'type' => 'blob',
+                'size' => 'big',
+                'description' => t('Metadata.'),
+            ),
+        ),
+        'indexes' => array(
+            'status' => array('status'),
+        ),
+        'primary key' => array('id'),
+        'unique keys' => array(
+            'code' => array('code'),
+        ),
+    );
+    return $schema;
+}
+
+/**
+ * Implements hook_install().
+ */
+function icb_inventory_install(){
+    $setting = array(
+        'target_type' => 'user',
+        'handler_settings' => array('target_bundles' => array('')),
+    );
+    icb_inventory_create_instance('icb_address','addressfield', 'icb_inventory', 'icb_inventory', 'Address', array());
+    icb_inventory_create_instance('icb_inventory_keeper','entityreference', 'icb_inventory', 'icb_inventory', 'Inventory keeper', $setting,-1);
+    $settings = array(
+        'allowed_values' => array(
+            0 => 'False',
+            1 => 'True',
+        ),
+    );
+
+    icb_inventory_create_instance('icb_delivery_picking', 'list_boolean', 'icb_inventory', 'icb_inventory', "iCare delivery picking ", $settings, 1);
+
+    $settings = array(
+        'allowed_values' => array(
+            0 => 'False',
+            1 => 'True',
+        ),
+    );
+
+    icb_inventory_create_instance('icb_provider_droppable', 'list_boolean', 'icb_inventory', 'icb_inventory', "iCare provider droppable ", $settings, 1);
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function icb_inventory_uninstall(){
+    icb_inventory_delete_instance('icb_address','icb_inventory','icb_inventory');
+    icb_inventory_delete_instance('icb_inventory_keeper','icb_inventory','icb_inventory');
+    icb_inventory_delete_instance('icb_delivery_picking','icb_inventory','icb_inventory');
+    icb_inventory_delete_instance('icb_provider_droppable','icb_inventory','icb_inventory');
+}
+
+/**
+ * Function icb_inventory_create_instance().
+ */
+function icb_inventory_create_instance($field_name, $field_type, $entity_type, $bundle, $label, $settings, $cardinality = 1, $weight = 0){
+    field_cache_clear();
+
+    $field = field_info_field($field_name);
+    $instance = field_info_instance($entity_type, $field_name, $bundle);
+
+    if (empty($field)) {
+        $field = array(
+            'field_name' => $field_name,
+            'type' => $field_type,
+            'cardinality' => $cardinality,
+            'translatable' => FALSE,
+            'settings' => $settings,
+            'locked' => FALSE,
+        );
+        field_create_field($field);
+    }
+
+    if (empty($instance)) {
+        $instance = array(
+            'field_name' => $field_name,
+            'entity_type' => $entity_type,
+            'bundle' => $bundle,
+
+            'label' => $label,
+            'required' => TRUE,
+            'settings' => array(),
+
+            'widget' => array(
+                'type' => $field_type,
+                'weight' => $weight,
+                'settings' => array(),
+            ),
+        );
+        field_create_instance($instance);
+    }
+}
+
+/**
+ * Function icb_inventory_delete_instance().
+ */
+function icb_inventory_delete_instance($field_name, $entity_type, $bundle){
+    field_cache_clear();
+    $instance = field_info_instance($entity_type, $field_name, $bundle);
+
+    if (!empty($instance)) {
+        field_delete_instance($instance);
+    }
+}
