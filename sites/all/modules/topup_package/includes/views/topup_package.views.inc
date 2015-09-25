@@ -92,7 +92,7 @@ function topup_package_views_data() {
             'click sortable' => TRUE,
         ),
         'filter' => array(
-            'handler' => 'views_handler_filter_string',
+            'handler' => 'topup_package_handler_filter_telco',
         ),
         'sort' => array(
             'handler' => 'views_handler_sort',
@@ -147,6 +147,14 @@ function topup_package_views_data() {
         ),
         'sort' => array(
             'handler' => 'views_handler_sort',
+        ),
+    );
+    $data['topup_package']['edit'] = array(
+        'title' => t('Edit'),
+        'help' => t('Edit topup package'),
+        'field' => array(
+            'handler' => 'topup_package_views_handler_field_edit',
+            'click sortable' => TRUE,
         ),
     );
 

@@ -130,41 +130,48 @@ function topup_package_view($entity, $view_mode = 'full') {
 }
 
 function topup_package_main_page() {
-    $content = array();
-    // Load all of our entities.
-    $entities = topup_package_load_multiple();
-    if (!empty($entities)) {
-        foreach ($entities as $entity) {
-            // Create tabular rows for our entities.
-            $rows[] = array(
-                'data' => array(
-                    'id' => $entity->id,
-                    'name' => l($entity->name, 'topup_package/' . $entity->id),
-                    'code' => $entity->code,
-                    'amount' => $entity->amount,
-                    'month' => $entity->month,
-                    'telco' => $entity->telco,
-                    'status' => $entity->status,
-                    'created_at' => $entity->created_at,
-                    'edit' => l('Edit','topup_package/' . $entity->id . '/edit')
-                ),
-            );
-        }
-        // Put our entities into a themed table. See theme_table() for details.
-        $content['entity_table'] = array(
-            '#theme' => 'table',
-            '#rows' => $rows,
-            '#header' => array(t('ID'), t('Package Name'), t('Package Code'), t('Package Amont'), t('Package Mount'), t('Package telco'), t('Status'), t('Created'), t('Options')),
-        );
-    }
-    else {
-        // There were no entities. Tell the user.
-        $content[] = array(
-            '#type' => 'item',
-            '#markup' => t('No employee entities currently exist.'),
-        );
-    }
-    return $content;
+    $topup_package = views_embed_view('topup_package','page');
+
+    $page['request_item_list'] = array(
+        '#markup' => $topup_package,
+    );
+
+    return $page;
+//    $content = array();
+//    // Load all of our entities.
+//    $entities = topup_package_load_multiple();
+//    if (!empty($entities)) {
+//        foreach ($entities as $entity) {
+//            // Create tabular rows for our entities.
+//            $rows[] = array(
+//                'data' => array(
+//                    'id' => $entity->id,
+//                    'name' => l($entity->name, 'topup_package/' . $entity->id),
+//                    'code' => $entity->code,
+//                    'amount' => $entity->amount,
+//                    'month' => $entity->month,
+//                    'telco' => $entity->telco,
+//                    'status' => $entity->status,
+//                    'created_at' => $entity->created_at,
+//                    'edit' => l('Edit','topup_package/' . $entity->id . '/edit')
+//                ),
+//            );
+//        }
+//        // Put our entities into a themed table. See theme_table() for details.
+//        $content['entity_table'] = array(
+//            '#theme' => 'table',
+//            '#rows' => $rows,
+//            '#header' => array(t('ID'), t('Package Name'), t('Package Code'), t('Package Amont'), t('Package Mount'), t('Package telco'), t('Status'), t('Created'), t('Options')),
+//        );
+//    }
+//    else {
+//        // There were no entities. Tell the user.
+//        $content[] = array(
+//            '#type' => 'item',
+//            '#markup' => t('No employee entities currently exist.'),
+//        );
+//    }
+//    return $content;
 }
 function topup_package_add_object() {
 //  $entity = entity_create(array());
@@ -340,6 +347,13 @@ function topup_package_status_options() {
     return array(
         'enabled' => t('Enabled'),
         'disabled' => t('Disabled'),
+    );
+}
+function topup_package_get_telcos() {
+    return array(
+        'VTEL' => t('Viettel'),
+        'MOBI' => t('Mobiphone'),
+        'VINA' => t('Vinaphone')
     );
 }
 /**

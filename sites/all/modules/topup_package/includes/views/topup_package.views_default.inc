@@ -34,53 +34,79 @@ function topup_package_views_default_views() {
             'empty_column' => 0,
         ),
     );
-    /* Field: Topup Backage: ID */
+    /* Field: Topup Package: ID */
     $handler->display->display_options['fields']['id']['id'] = 'id';
     $handler->display->display_options['fields']['id']['table'] = 'topup_package';
     $handler->display->display_options['fields']['id']['field'] = 'id';
-    /* Field: Topup Backage: Name */
+    /* Field: Topup Package: Name */
     $handler->display->display_options['fields']['name']['id'] = 'name';
     $handler->display->display_options['fields']['name']['table'] = 'topup_package';
     $handler->display->display_options['fields']['name']['field'] = 'name';
-    /* Field: Topup Backage: Code */
+    /* Field: Topup Package: Code */
     $handler->display->display_options['fields']['code']['id'] = 'code';
     $handler->display->display_options['fields']['code']['table'] = 'topup_package';
     $handler->display->display_options['fields']['code']['field'] = 'code';
-    /* Field: Topup Backage: Amount */
+    /* Field: Topup Package: Amount */
     $handler->display->display_options['fields']['amount']['id'] = 'amount';
     $handler->display->display_options['fields']['amount']['table'] = 'topup_package';
     $handler->display->display_options['fields']['amount']['field'] = 'amount';
-    /* Field: Topup Backage: Month */
+    /* Field: Topup Package: Month */
     $handler->display->display_options['fields']['month']['id'] = 'month';
     $handler->display->display_options['fields']['month']['table'] = 'topup_package';
     $handler->display->display_options['fields']['month']['field'] = 'month';
-    /* Field: Topup Backage: Sms code */
+    /* Field: Topup Package: Sms code */
     $handler->display->display_options['fields']['sms_code']['id'] = 'sms_code';
     $handler->display->display_options['fields']['sms_code']['table'] = 'topup_package';
     $handler->display->display_options['fields']['sms_code']['field'] = 'sms_code';
-    /* Field: Topup Backage: Telco */
+    /* Field: Topup Package: Telco */
     $handler->display->display_options['fields']['telco']['id'] = 'telco';
     $handler->display->display_options['fields']['telco']['table'] = 'topup_package';
     $handler->display->display_options['fields']['telco']['field'] = 'telco';
-    /* Field: Topup Backage: Status */
+    /* Field: Topup Package: Status */
     $handler->display->display_options['fields']['status']['id'] = 'status';
     $handler->display->display_options['fields']['status']['table'] = 'topup_package';
     $handler->display->display_options['fields']['status']['field'] = 'status';
-    /* Field: Topup Backage: Created at */
+    /* Field: Topup Package: Created at */
     $handler->display->display_options['fields']['created_at']['id'] = 'created_at';
     $handler->display->display_options['fields']['created_at']['table'] = 'topup_package';
     $handler->display->display_options['fields']['created_at']['field'] = 'created_at';
-    /* Field: Topup Backage: Updated at */
+    /* Field: Topup Package: Updated at */
     $handler->display->display_options['fields']['updated_at']['id'] = 'updated_at';
     $handler->display->display_options['fields']['updated_at']['table'] = 'topup_package';
     $handler->display->display_options['fields']['updated_at']['field'] = 'updated_at';
-    /* Sort criterion: Topup Backage: ID */
-    $handler->display->display_options['sorts']['id']['id'] = 'id';
-    $handler->display->display_options['sorts']['id']['table'] = 'topup_package';
-    $handler->display->display_options['sorts']['id']['field'] = 'id';
-    $handler->display->display_options['sorts']['id']['exposed'] = TRUE;
-    $handler->display->display_options['sorts']['id']['expose']['label'] = 'ID';
-    /* Filter criterion: Topup Backage: Telco */
+    /* Field: Topup Package: Edit */
+    $handler->display->display_options['fields']['edit']['id'] = 'edit';
+    $handler->display->display_options['fields']['edit']['table'] = 'topup_package';
+    $handler->display->display_options['fields']['edit']['field'] = 'edit';
+    /* Filter criterion: Topup Package: Code */
+    $handler->display->display_options['filters']['code']['id'] = 'code';
+    $handler->display->display_options['filters']['code']['table'] = 'topup_package';
+    $handler->display->display_options['filters']['code']['field'] = 'code';
+    $handler->display->display_options['filters']['code']['exposed'] = TRUE;
+    $handler->display->display_options['filters']['code']['expose']['operator_id'] = 'code_op';
+    $handler->display->display_options['filters']['code']['expose']['label'] = 'Package Code';
+    $handler->display->display_options['filters']['code']['expose']['operator'] = 'code_op';
+    $handler->display->display_options['filters']['code']['expose']['identifier'] = 'code';
+    $handler->display->display_options['filters']['code']['expose']['remember_roles'] = array(
+        2 => '2',
+        1 => 0,
+        3 => 0,
+    );
+    /* Filter criterion: Topup Package: Status */
+    $handler->display->display_options['filters']['status']['id'] = 'status';
+    $handler->display->display_options['filters']['status']['table'] = 'topup_package';
+    $handler->display->display_options['filters']['status']['field'] = 'status';
+    $handler->display->display_options['filters']['status']['exposed'] = TRUE;
+    $handler->display->display_options['filters']['status']['expose']['operator_id'] = 'status_op';
+    $handler->display->display_options['filters']['status']['expose']['label'] = 'Status';
+    $handler->display->display_options['filters']['status']['expose']['operator'] = 'status_op';
+    $handler->display->display_options['filters']['status']['expose']['identifier'] = 'status';
+    $handler->display->display_options['filters']['status']['expose']['remember_roles'] = array(
+        2 => '2',
+        1 => 0,
+        3 => 0,
+    );
+    /* Filter criterion: Topup Package: Telco */
     $handler->display->display_options['filters']['telco']['id'] = 'telco';
     $handler->display->display_options['filters']['telco']['table'] = 'topup_package';
     $handler->display->display_options['filters']['telco']['field'] = 'telco';
@@ -92,7 +118,6 @@ function topup_package_views_default_views() {
     $handler->display->display_options['filters']['telco']['expose']['remember_roles'] = array(
         2 => '2',
         1 => 0,
-        4 => 0,
         3 => 0,
     );
 

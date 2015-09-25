@@ -103,9 +103,13 @@ class topup_package_views_plugin_query extends views_plugin_query {
     function query($get_count = FALSE) {
         $filters = array();
         if (!empty($this->where)) {
-            foreach ($this->where as $key => $item) {
-                if (!empty($item['conditions']['0']['value'])) {
-                    $filters[$item['conditions']['0']['field']] = $item['conditions']['0']['value'];
+            $values = $this->where;
+            foreach ($values[1]['conditions'] as $key => $value) {
+                if (!empty($value['value'])) {
+                    if($value['field'] == 'code'){
+                        $value['value'] = array($value['value']);
+                    }
+                    $filters[$value['field']] = $value['value']['0'];
                 }
             }
         }
