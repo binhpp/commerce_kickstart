@@ -1,0 +1,33 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: root
+ * Date: 08/09/2015
+ * Time: 10:33
+ */
+/**
+ * Implements hook_menu()
+ */
+function ajax_user_menu() {
+    $items['ajax-user/auto_complete'] = array(
+        'title' => 'Autocomplete (simple)',
+        'page callback' => 'drupal_get_form',
+        'page arguments' => array('ajax_user_autocomplete'),
+        'access arguments' => array('access user profiles'),
+        'file' => 'ajax_user_autocomplete.inc',
+        'weight' => 10,
+    );
+    $items['ajax-user/auto_complete_callback'] = array(
+        'page callback' => 'ajax_user_autocomplete_callback',
+        'file' => 'ajax_user_autocomplete.inc',
+        'type' => MENU_CALLBACK,
+        'access arguments' => array('access user profiles'),
+    );
+    $items['ajax-user/auto_node_complete'] = array(
+        'page callback' => 'ajax_node_autocomplete_callback',
+        'file' => 'ajax_user_autocomplete.inc',
+        'type' => MENU_CALLBACK,
+        'access arguments' => array('access user profiles'),
+    );
+    return $items;
+}

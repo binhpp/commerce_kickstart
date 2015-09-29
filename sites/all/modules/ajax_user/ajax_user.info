@@ -1,0 +1,4 @@
+name = Ajax complete user
+description = The module provider ajax
+core = 7.x
+package = @custom

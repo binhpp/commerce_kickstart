@@ -1,0 +1,5 @@
+name = IC Contact Email
+description = Load order contact email for user.
+core = 7.x
+version = 7.x-0.2-alpha1
+package = @custom
