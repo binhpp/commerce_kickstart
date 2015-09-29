@@ -1,0 +1,8 @@
+.installment-title {
+    font-weight: bold;
+}
+.installment-value {
+    font-size: 120%;
+    color: #858787;
+    margin-bottom: 5px;
+}

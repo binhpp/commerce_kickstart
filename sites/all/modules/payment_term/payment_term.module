@@ -5,3 +5,155 @@
  * Date: 29/09/2015
  * Time: 11:22
  */
+
+/**
+ * Implement hook_field_info()
+ */
+function payment_term_field_info() {
+    return array(
+        'payment_term' => array(
+            'label' => t('Payment Term'),
+            'description' => t('This stores and display terms for products'),
+            'default_widget' => 'summary',
+            'default_formatter' => 'summary'
+        )
+    );
+}
+
+/**
+ * Implement hook_field_widget_info()
+ */
+function payment_term_field_widget_info() {
+    return array(
+        'payment_term' => array(
+            'label' => t('Default'),
+            'field types'=> array('payment_term'),
+            'behaviors' => array(
+                'multiple values' => FIELD_BEHAVIOR_DEFAULT,
+                'default value' => FIELD_BEHAVIOR_DEFAULT,
+            ),
+        ),
+    );
+}
+
+/**
+ * Implement hook_field_formatter_info()
+ */
+function payment_term_field_formatter_info() {
+    return array(
+        'payment_term_summary' => array(
+            'label' => t('Summary'),
+            'field types' => array('payment_term'),
+            'settings' => array(
+                'significance' => 1000
+            )
+        ),
+        'payment_term_detail' => array(
+            'label' => t('Detail'),
+            'field types' => array('payment_term'),
+            'settings' => array(
+                'significance' => 1000
+            )
+        ),
+    );
+}
+/**
+ * Implement hook_field_formatter_view()
+ */
+function payment_term_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
+    drupal_add_css(drupal_get_path('module', 'payment_term') . '/css/payment-term.css');
+    $element = array();
+    $significance = empty($display['setting']['significance']) ? 1000 :$display['setting']['significance'];
+    foreach ($items as $delta => $item) {
+        $price = $entity->commerce_price[$langcode][0]['amount'];
+        $per_mon = payment_term_round_up($price/$item['value'], $significance);
+
+        if ($display['type'] == 'payment_term_summary') {
+            $element[$delta] = array(
+                '#markup' => $item['value'] > 1 ?
+                    t('@rate% interest: @amount/month', array('@rate' => 0, '@amount' => commerce_currency_format($per_mon, commerce_default_currency())))
+                    : '',
+                '#prefix' => '<div class="installment-value">',
+                '#suffix' => '</div>'
+            );
+        }
+        elseif ($display['type'] == 'payment_term_detail') {
+            $element[$delta] = array(
+                '#markup' => $item['value'] > 1 ?
+                    t('Pay in @mon months: @amount/month', array('@mon' => $item['value'], '@amount' => commerce_currency_format($per_mon, commerce_default_currency())))
+                    : t('Payment: End of month'),
+                '#prefix' => '<div class="installment-value">',
+                '#suffix' => '</div>'
+            );
+        }
+    }
+    return $element;
+}
+
+/**
+ * Implement hook_field_widget_form()
+ */
+function payment_term_field_widget_form(&$form, $form_state, $field, $instance, $langcode, $items, $delta, $element) {
+    if($instance['widget']['type'] == 'payment_term') {
+        $element['value'] = array(
+            '#type' => 'select',
+            '#title' => t('Installment payment term'),
+            '#options' => payment_term_term_options(),
+            '#default_value' => isset($items[$delta]['value']) ? $items[$delta]['value'] : 1,
+            '#description' => t('The payment term in months'),
+        );
+    }
+    return $element;
+}
+
+/**
+ * Implements hook_field_is_empty()
+ */
+function payment_term_field_is_empty($item, $field) {
+    return FALSE;
+}
+/**
+ * Implements hook_field_formatter_settings_summary().
+ */
+function payment_term_field_formatter_settings_summary($field, $instance, $view_mode) {
+    $display = $instance['display'][$view_mode];
+    $settings = $display['settings'];
+    $summary = array();
+    if ($display['type'] == 'payment_term_summary' || $display['type'] == 'payment_term_detail') {
+        $sig = empty($settings['significance']) ? 1000 : $settings['significance'];
+        $summary = t('Using significance factor of @sig', array('@sig' => $sig));
+    }
+    return $summary;
+}
+
+/**
+ * Implement hook_field_formatter_settings_form()
+ */
+function payment_term_field_formatter_settings_form($field, $instance, $view_mode, $form, &$form_state){
+    $display = $instance['display'][$view_mode];
+    $settings = $display['settings'];
+    $element['significance'] = array(
+        '#title' => t('Significance factor'),
+        '#type' => 'textfield',
+        '#description' => t('The significance factor to round up price. Significance factor of 1000 causes 1400 to round up to 2000'),
+        '#default_value' => empty($settings['significance']) ? 1000 : $settings['significance'],
+    );
+    return $element;
+}
+
+/**
+ * Return all possible term options
+ */
+function payment_term_term_options() {
+    return array(
+        1 => t('End of month'),
+        2 => t('2 months'),
+        3 => t('3 months'),
+        4 => t('4 months'),
+        5 => t('5 months'),
+        6 => t('6 months'),
+    );
+}
+function payment_term_round_up($amount, $significance = 1000) {
+    return ceil($amount/$significance) * $significance;
+}

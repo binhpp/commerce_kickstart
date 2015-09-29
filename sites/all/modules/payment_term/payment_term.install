@@ -7,15 +7,19 @@
  */
 
 /**
- * Implement hook_field_info()
+ * Implement hook_field_schema()
  */
-function payment_term_field_info() {
+function payment_term_field_schema($field) {
+    if($field['type'] == 'payment_term') {
+        $columns = array(
+            'value' => array(
+                'type' => 'int',
+                'not null' => FALSE,
+                'description' => '',
+            ),
+        );
+    }
     return array(
-        'mc_payment_term' => array(
-            'label' => t('Payment Term'),
-            'description' => t('This stores and display terms for products'),
-            'default_widget' => 'summary',
-            'default_formatter' => 'summary'
-        )
+        'columns' => $columns,
     );
 }
