@@ -1,0 +1,6 @@
+name = MCA Commerce Payment Terms
+description = Provide installment payment terms for products
+core = 7.x
+version = 7.x-0.2-alpha1
+package = @custom
+dependencies[] = commerce

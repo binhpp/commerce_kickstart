@@ -16,3 +16,4 @@ files[] = includes/views/plugins/topup_package_views_plugin_query.inc
 files[] = includes/views/handlers/topup_package_views_handler_filter_status.inc
 files[] = includes/views/handlers/topup_package_handler_filter_telco.inc
 files[] = includes/views/handlers/topup_package_views_handler_field_edit.inc
+files[] = includes/views/handlers/topup_package_views_handler_field_name_edit.inc

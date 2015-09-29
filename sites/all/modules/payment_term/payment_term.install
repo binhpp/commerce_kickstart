@@ -1,0 +1,21 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: binh
+ * Date: 29/09/2015
+ * Time: 11:22
+ */
+
+/**
+ * Implement hook_field_info()
+ */
+function payment_term_field_info() {
+    return array(
+        'mc_payment_term' => array(
+            'label' => t('Payment Term'),
+            'description' => t('This stores and display terms for products'),
+            'default_widget' => 'summary',
+            'default_formatter' => 'summary'
+        )
+    );
+}

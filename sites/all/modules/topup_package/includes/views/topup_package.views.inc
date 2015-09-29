@@ -58,7 +58,17 @@ function topup_package_views_data() {
             'handler' => 'views_handler_sort',
         ),
     );
-
+    $data['topup_package']['name_edit'] = array(
+        'title' => t('Name Edit'),
+        'help' => t('The name of this package'),
+        'field' => array(
+            'handler' => 'topup_package_views_handler_field_name_edit',
+            'click sortable' => TRUE,
+        ),
+        'sort' => array(
+            'handler' => 'views_handler_sort',
+        ),
+    );
     $data['topup_package']['amount'] = array(
         'title' => t('Amount'),
         'help' => t('The amount of this package'),
