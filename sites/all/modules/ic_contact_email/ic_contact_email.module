@@ -19,12 +19,9 @@ function ic_contact_email_form_alter(&$form, &$form_state, $form_id) {
         $form['user']['mail']['#suffix'] = '</div>';
     }
     if(!empty($form_state['values']['name'])) {
-        $users = entity_load('user');
-        foreach($users as $key => $user) {
-            if($form_state['values']['name'] == $user->name) {
-                $result = $user->mail;
-            }
-        }
+        $user = user_load_by_name($form_state['values']['name']);
+        $result = $user->mail;
+
         $form['user']['mail']['#value'] = $result;
         $form['user']['mail']['#disabled'] = TRUE;
     }
