@@ -7,21 +7,18 @@
  */
 
 /**
- * Implement hook_form_alter()
+ * Implement hook_form_FORM_ID_alter()
  */
-function ic_contact_email_form_alter(&$form, &$form_state, $form_id) {
-    if($form_id == 'commerce_order_ui_order_form') {
-        $form['user']['name']['#ajax'] = array(
-            'callback' => 'ic_contact_email_callback',
-            'wrapper' => 'autocomplete-by-user-name-ajax-replace',
-        );
-        $form['user']['mail']['#prefix'] = '<div id="autocomplete-by-user-name-ajax-replace">';
-        $form['user']['mail']['#suffix'] = '</div>';
-    }
+function ic_contact_email_form_commerce_order_ui_order_form_alter(&$form, &$form_state, $form_id) {
+    $form['user']['name']['#ajax'] = array(
+        'callback' => 'ic_contact_email_callback',
+        'wrapper' => 'autocomplete-by-user-name-ajax-replace',
+    );
+    $form['user']['mail']['#prefix'] = '<div id="autocomplete-by-user-name-ajax-replace">';
+    $form['user']['mail']['#suffix'] = '</div>';
     if(!empty($form_state['values']['name'])) {
         $user = user_load_by_name($form_state['values']['name']);
         $result = $user->mail;
-
         $form['user']['mail']['#value'] = $result;
         $form['user']['mail']['#disabled'] = TRUE;
     }
